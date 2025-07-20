@@ -5,6 +5,7 @@ import { resolve } from "path";
 // https://vitejs.dev/config/
 export default defineConfig({
   plugins: [react()],
+  base: "/agenxus-site/", // This should match your GitHub repo name
   resolve: {
     alias: {
       "@": resolve(__dirname, "./src"),
