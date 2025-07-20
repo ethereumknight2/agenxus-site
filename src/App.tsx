@@ -80,7 +80,7 @@ export default function App() {
               {/* Logo */}
               <div className="flex items-center gap-2">
                 <img
-                  src="/src/logo.png"
+                  src="/logo.png"
                   alt="Agenxus Logo"
                   className="h-20 w-auto"
                 />
