@@ -80,7 +80,7 @@ export default function App() {
               {/* Logo */}
               <div className="flex items-center gap-2">
                 <img
-                  src="/public/logo.png"
+                  src="https://raw.githubusercontent.com/ethereumknight2/agenxus-site/main/public/logo.png"
                   alt="Agenxus Logo"
                   className="h-20 w-auto"
                 />
@@ -112,13 +112,16 @@ export default function App() {
               >
                 About
               </a>
-              <motion.button
+              <motion.a
+                href="https://cal.com/michael-eisner-vklnu2"
+                target="_blank"
+                rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
                 whileTap={{ scale: 0.95 }}
                 className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold py-2 px-6 rounded-full text-sm"
               >
                 Get Started
-              </motion.button>
+              </motion.a>
             </motion.nav>
           </div>
         </div>
@@ -273,13 +276,16 @@ export default function App() {
             transition={{ duration: 0.8, delay: 0.8 }}
             className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-50"
           >
-            <motion.button
+            <motion.a
+              href="https://cal.com/michael-eisner-vklnu2"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{
                 scale: 1.05,
                 boxShadow: "0 20px 40px rgba(59, 130, 246, 0.3)",
               }}
               whileTap={{ scale: 0.95 }}
-              className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300"
+              className="group relative overflow-hidden bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold py-4 px-8 rounded-full transition-all duration-300 inline-flex items-center gap-2"
             >
               {/* Button shine effect */}
               <motion.div
@@ -304,9 +310,10 @@ export default function App() {
                   <ArrowRight className="w-4 h-4" />
                 </motion.div>
               </span>
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="contact.html"
               whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(255, 255, 255, 0.5)",
@@ -329,7 +336,7 @@ export default function App() {
                 <Mail className="w-4 h-4" />
               </motion.div>
               Contact Us
-            </motion.button>
+            </motion.a>
           </motion.div>
         </div>
 
@@ -695,23 +702,27 @@ export default function App() {
           </p>
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
-            <motion.button
+            <motion.a
+              href="https://cal.com/michael-eisner-vklnu2"
+              target="_blank"
+              rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white font-semibold py-4 px-8 rounded-full text-lg shadow-2xl hover:shadow-blue-500/25 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Calendar className="w-5 h-5" />
               Book a Free Discovery Call
-            </motion.button>
+            </motion.a>
 
-            <motion.button
+            <motion.a
+              href="contact.html"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border border-white/20 text-white font-semibold py-4 px-8 rounded-full hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
             >
               <Mail className="w-5 h-5" />
               Contact Us
-            </motion.button>
+            </motion.a>
           </div>
         </motion.div>
       </section>
@@ -1215,7 +1226,7 @@ function FloatingElement({ delay, className }: FloatingElementProps) {
             ease: "easeInOut",
           }}
         />
-      </motion.div>
+      </div>
     </motion.div>
   );
 }
