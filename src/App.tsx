@@ -443,7 +443,7 @@ export default function App() {
             </motion.a>
 
             <motion.a
-              href="contact.html"
+              href="/contact"
               whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(255, 255, 255, 0.5)",
