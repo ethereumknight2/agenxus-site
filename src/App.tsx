@@ -1226,7 +1226,7 @@ function FloatingElement({ delay, className }: FloatingElementProps) {
             ease: "easeInOut",
           }}
         />
-      </div>
+      </motion.div>
     </motion.div>
   );
 }
