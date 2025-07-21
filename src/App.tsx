@@ -1,3 +1,32 @@
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useInView,
+  useAnimation,
+} from "framer-motion";
+import {
+  ArrowRight,
+  Phone,
+  MessageCircle,
+  Video,
+  Cog,
+  Building2,
+  Heart,
+  Home,
+  Scale,
+  GraduationCap,
+  ChevronDown,
+  CheckCircle,
+  Calendar,
+  Mail,
+  Sparkles,
+  Zap,
+  Star,
+  Quote,
+} from "lucide-react";
+import { useRef, useEffect, useState } from "react";
+
 interface TechLogoProps {
   name: string;
 }
@@ -147,34 +176,6 @@ function TechItem({ title, items }: TechItemProps) {
     </div>
   );
 }
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useInView,
-  useAnimation,
-} from "framer-motion";
-import {
-  ArrowRight,
-  Phone,
-  MessageCircle,
-  Video,
-  Cog,
-  Building2,
-  Heart,
-  Home,
-  Scale,
-  GraduationCap,
-  ChevronDown,
-  CheckCircle,
-  Calendar,
-  Mail,
-  Sparkles,
-  Zap,
-  Star,
-  Quote,
-} from "lucide-react";
-import { useRef, useEffect, useState } from "react";
 
 export default function App() {
   const [mousePosition, setMousePosition] = useState({ x: 0, y: 0 });
@@ -443,7 +444,7 @@ export default function App() {
             </motion.a>
 
             <motion.a
-              href="/contact"
+              href="contact.html"
               whileHover={{
                 scale: 1.05,
                 borderColor: "rgba(255, 255, 255, 0.5)",
@@ -779,29 +780,43 @@ export default function App() {
             >
               <div className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-3xl p-8">
                 <h3 className="text-2xl font-bold mb-6 text-center">
-                  Technologies We Use
+                  Our Approach
                 </h3>
-                <div className="grid grid-cols-2 gap-4 text-sm">
-                  <TechItem
-                    title="Voice AI"
-                    items={[
-                      "Retell AI",
-                      "Custom GPT agents",
-                      "Chat interfaces",
-                    ]}
-                  />
-                  <TechItem
-                    title="Automation"
-                    items={["Go High Level", "n8n & Zapier", "Calendar APIs"]}
-                  />
-                  <TechItem
-                    title="Development"
-                    items={["React & Next.js", "Node.js", "Supabase"]}
-                  />
-                  <TechItem
-                    title="AI & Video"
-                    items={["Synthesia", "D-ID", "Vector search"]}
-                  />
+                <div className="space-y-6">
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-blue-400 to-cyan-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <span className="text-white font-bold">1</span>
+                    </div>
+                    <h4 className="font-semibold text-blue-400 mb-2">
+                      Discovery & Strategy
+                    </h4>
+                    <p className="text-sm text-gray-300">
+                      We analyze your business needs and design the perfect AI
+                      solution
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-purple-400 to-pink-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <span className="text-white font-bold">2</span>
+                    </div>
+                    <h4 className="font-semibold text-purple-400 mb-2">
+                      Build & Deploy
+                    </h4>
+                    <p className="text-sm text-gray-300">
+                      Custom development using cutting-edge AI technologies
+                    </p>
+                  </div>
+                  <div className="text-center">
+                    <div className="w-12 h-12 bg-gradient-to-r from-cyan-400 to-teal-400 rounded-full flex items-center justify-center mx-auto mb-3">
+                      <span className="text-white font-bold">3</span>
+                    </div>
+                    <h4 className="font-semibold text-cyan-400 mb-2">
+                      Scale & Support
+                    </h4>
+                    <p className="text-sm text-gray-300">
+                      Ongoing optimization and expansion as your business grows
+                    </p>
+                  </div>
                 </div>
               </div>
             </motion.div>
