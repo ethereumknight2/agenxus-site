@@ -1,3 +1,133 @@
+interface TechLogoProps {
+  name: string;
+}
+
+function TechLogo({ name }: TechLogoProps) {
+  const getLogoColor = (techName: string) => {
+    const colors = {
+      "Retell AI": "from-blue-400 to-cyan-400",
+      OpenAI: "from-green-400 to-emerald-400",
+      "Go High Level": "from-purple-400 to-pink-400",
+      LangChain: "from-yellow-400 to-orange-400",
+      n8n: "from-red-400 to-pink-400",
+      Make: "from-blue-400 to-indigo-400",
+      React: "from-cyan-400 to-blue-400",
+      "Node.js": "from-green-400 to-lime-400",
+      TypeScript: "from-blue-400 to-blue-600",
+      Supabase: "from-green-400 to-teal-400",
+      Zapier: "from-orange-400 to-red-400",
+      HTML5: "from-orange-400 to-red-400",
+      CSS3: "from-blue-400 to-cyan-400",
+      JavaScript: "from-yellow-400 to-orange-400",
+      Synthesia: "from-purple-400 to-indigo-400",
+      "D-ID": "from-pink-400 to-rose-400",
+      Tailwind: "from-cyan-400 to-teal-400",
+      "Next.js": "from-gray-400 to-gray-600",
+      Python: "from-blue-400 to-yellow-400",
+      PostgreSQL: "from-blue-400 to-indigo-400",
+    };
+    return (
+      colors[techName as keyof typeof colors] || "from-gray-400 to-gray-600"
+    );
+  };
+
+  const getInitials = (techName: string) => {
+    const specialCases = {
+      "Retell AI": "RA",
+      OpenAI: "AI",
+      "Go High Level": "GHL",
+      LangChain: "LC",
+      n8n: "n8n",
+      Make: "MK",
+      React: "⚛️",
+      "Node.js": "N",
+      TypeScript: "TS",
+      Supabase: "SB",
+      Zapier: "Z",
+      HTML5: "H",
+      CSS3: "C",
+      JavaScript: "JS",
+      Synthesia: "SY",
+      "D-ID": "DI",
+      Tailwind: "TW",
+      "Next.js": "N",
+      Python: "🐍",
+      PostgreSQL: "PG",
+    };
+
+    return (
+      specialCases[techName as keyof typeof specialCases] ||
+      techName
+        .split(" ")
+        .map((word) => word[0])
+        .join("")
+        .toUpperCase()
+    );
+  };
+
+  return (
+    <motion.div
+      whileHover={{
+        scale: 1.1,
+        y: -5,
+        transition: { duration: 0.2 },
+      }}
+      className="group relative flex-shrink-0"
+    >
+      {/* Glow effect */}
+      <motion.div
+        className={`absolute inset-0 bg-gradient-to-r ${getLogoColor(
+          name
+        )} rounded-2xl blur-lg opacity-0 group-hover:opacity-30`}
+        animate={{
+          scale: [1, 1.05, 1],
+        }}
+        transition={{
+          duration: 2,
+          repeat: Infinity,
+          ease: "easeInOut",
+        }}
+      />
+
+      {/* Main card */}
+      <div className="relative bg-white/10 backdrop-blur-sm border border-white/20 rounded-2xl p-6 w-32 h-24 flex flex-col items-center justify-center group-hover:bg-white/20 transition-all duration-300">
+        {/* Logo/Icon */}
+        <motion.div
+          className={`w-8 h-8 rounded-lg bg-gradient-to-r ${getLogoColor(
+            name
+          )} flex items-center justify-center text-white font-bold text-sm mb-2`}
+          whileHover={{
+            rotate: [0, 10, -10, 0],
+            transition: { duration: 0.5 },
+          }}
+        >
+          {getInitials(name)}
+        </motion.div>
+
+        {/* Tech name */}
+        <div className="text-gray-300 text-xs font-medium text-center leading-tight group-hover:text-white transition-colors">
+          {name}
+        </div>
+
+        {/* Subtle sparkle effect */}
+        <motion.div
+          className="absolute top-2 right-2 w-1 h-1 bg-white/40 rounded-full"
+          animate={{
+            scale: [0.5, 1, 0.5],
+            opacity: [0.3, 0.8, 0.3],
+          }}
+          transition={{
+            duration: 3,
+            repeat: Infinity,
+            ease: "easeInOut",
+            delay: Math.random() * 2,
+          }}
+        />
+      </div>
+    </motion.div>
+  );
+}
+
 interface TechItemProps {
   title: string;
   items: string[];
@@ -676,6 +806,130 @@ export default function App() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Technology Partners Section */}
+      <section className="relative py-24 px-4 bg-gradient-to-b from-transparent to-gray-900/10">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-16"
+          >
+            <h2 className="text-4xl md:text-5xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+                Powered by
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                Leading Technologies
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              We leverage the best tools and platforms to build robust, scalable
+              AI solutions for your business
+            </p>
+          </motion.div>
+
+          {/* Scrolling Logo Container */}
+          <div className="relative overflow-hidden">
+            {/* Gradient overlays */}
+            <div className="absolute left-0 top-0 bottom-0 w-32 bg-gradient-to-r from-gray-900 via-gray-900/80 to-transparent z-10"></div>
+            <div className="absolute right-0 top-0 bottom-0 w-32 bg-gradient-to-l from-gray-900 via-gray-900/80 to-transparent z-10"></div>
+
+            {/* First row - scrolling right */}
+            <motion.div
+              className="flex gap-12 py-8 mb-8"
+              animate={{
+                x: [0, -1200],
+              }}
+              transition={{
+                duration: 20,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{ width: "200%" }}
+            >
+              {/* First set */}
+              <TechLogo name="Retell AI" />
+              <TechLogo name="OpenAI" />
+              <TechLogo name="Go High Level" />
+              <TechLogo name="LangChain" />
+              <TechLogo name="n8n" />
+              <TechLogo name="Make" />
+              <TechLogo name="React" />
+              <TechLogo name="Node.js" />
+              <TechLogo name="TypeScript" />
+              <TechLogo name="Supabase" />
+
+              {/* Duplicate set for seamless loop */}
+              <TechLogo name="Retell AI" />
+              <TechLogo name="OpenAI" />
+              <TechLogo name="Go High Level" />
+              <TechLogo name="LangChain" />
+              <TechLogo name="n8n" />
+              <TechLogo name="Make" />
+              <TechLogo name="React" />
+              <TechLogo name="Node.js" />
+              <TechLogo name="TypeScript" />
+              <TechLogo name="Supabase" />
+            </motion.div>
+
+            {/* Second row - scrolling left */}
+            <motion.div
+              className="flex gap-12 py-8"
+              animate={{
+                x: [-1200, 0],
+              }}
+              transition={{
+                duration: 25,
+                repeat: Infinity,
+                ease: "linear",
+              }}
+              style={{ width: "200%" }}
+            >
+              {/* First set */}
+              <TechLogo name="Zapier" />
+              <TechLogo name="HTML5" />
+              <TechLogo name="CSS3" />
+              <TechLogo name="JavaScript" />
+              <TechLogo name="Synthesia" />
+              <TechLogo name="D-ID" />
+              <TechLogo name="Tailwind" />
+              <TechLogo name="Next.js" />
+              <TechLogo name="Python" />
+              <TechLogo name="PostgreSQL" />
+
+              {/* Duplicate set for seamless loop */}
+              <TechLogo name="Zapier" />
+              <TechLogo name="HTML5" />
+              <TechLogo name="CSS3" />
+              <TechLogo name="JavaScript" />
+              <TechLogo name="Synthesia" />
+              <TechLogo name="D-ID" />
+              <TechLogo name="Tailwind" />
+              <TechLogo name="Next.js" />
+              <TechLogo name="Python" />
+              <TechLogo name="PostgreSQL" />
+            </motion.div>
+          </div>
+
+          {/* Bottom text */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="text-center mt-12"
+          >
+            <p className="text-gray-400 text-lg">
+              And many more cutting-edge tools to deliver the perfect solution
+              for your business
+            </p>
+          </motion.div>
         </div>
       </section>
 
