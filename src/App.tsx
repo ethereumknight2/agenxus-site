@@ -565,8 +565,8 @@ export default function App() {
         </div>
       </section>
 
-      // SIMPLIFIED IndustryCard component
-function IndustryCard({ icon, title, description, delay }) {
+// Replace your IndustryCard function with this simplified version
+function IndustryCard({ icon, title, description, delay }: IndustryCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
 
