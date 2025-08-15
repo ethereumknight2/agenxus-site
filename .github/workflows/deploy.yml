@@ -24,10 +24,14 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "18"
-          cache: "npm"
-          cache-dependency-path: "dealership-landing/package-lock.json"
 
-      - name: Install dependencies
+      - name: Install dependencies for main site
+        run: npm ci
+
+      - name: Build main site
+        run: npm run build
+
+      - name: Install dependencies for dealership landing
         run: |
           cd dealership-landing
           npm ci
@@ -43,13 +47,11 @@ jobs:
       - name: Prepare deployment directory
         run: |
           mkdir -p _site
-          # Copy main site files FIRST
-          cp index.html _site/ || echo "No index.html found"
-          cp contact.html _site/ || echo "No contact.html found"
-          cp -r public/* _site/ 2>/dev/null || echo "No public folder found"
-          # Copy dealership landing page to subfolder
-          mkdir -p _site/ai-agent-car-dealerships
-          cp -r dealership-landing/dist/* _site/ai-agent-car-dealerships/
+          # Copy main site build (from root dist folder)
+          cp -r dist/* _site/
+          # Copy dealership landing to /dealerships/ subfolder
+          mkdir -p _site/dealerships
+          cp -r dealership-landing/dist/* _site/dealerships/
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
