@@ -83,9 +83,9 @@ const CarDealershipAILanding = () => {
 
       {/* Background Elements - Hidden on mobile for performance */}
       <div className="fixed inset-0 overflow-hidden -z-10 hidden md:block">
-        <div className="absolute top-20 left-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute bottom-20 right-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
-        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-cyan-500/10 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-20 left-10 w-96 h-96 bg-purple-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute bottom-20 right-10 w-96 h-96 bg-blue-500/20 rounded-full blur-3xl animate-pulse"></div>
+        <div className="absolute top-1/2 left-1/2 transform -translate-x-1/2 -translate-y-1/2 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse"></div>
       </div>
 
       {/* Header */}
@@ -175,7 +175,7 @@ const CarDealershipAILanding = () => {
           <main>
             <h1 className="text-5xl md:text-7xl font-bold mb-6 leading-tight">
               Never Miss Another
-              <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent block">
+              <span className="bg-gradient-to-r from-purple-400 via-blue-400 to-purple-400 bg-clip-text text-transparent block">
                 Sales or Service Call
               </span>
             </h1>
@@ -427,7 +427,7 @@ const CarDealershipAILanding = () => {
               />
               <button
                 type="submit"
-                className="mt-2 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+                className="mt-2 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
                 <Calendar className="w-5 h-5" />
                 <span>Send Me the Walkthrough</span>
@@ -487,13 +487,13 @@ const CarDealershipAILanding = () => {
 
             {/* Sales Agent */}
             <div className="group bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-blue-500/50 transition-all duration-300 transform hover:scale-105 hover:bg-white/10">
-              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-cyan-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+              <div className="w-16 h-16 bg-gradient-to-r from-blue-500 to-purple-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <TrendingUp className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-blue-300 transition-colors">
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
                 Sales Agent
               </h3>
-              <p className="text-sm text-blue-300 mb-4 font-medium">
+              <p className="text-sm text-purple-300 mb-4 font-medium">
                 Faster speed-to-lead
               </p>
               <ul className="space-y-3 text-gray-400 group-hover:text-gray-300 transition-colors">
@@ -519,14 +519,14 @@ const CarDealershipAILanding = () => {
             </div>
 
             {/* Service Department */}
-            <div className="group bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-green-500/50 transition-all duration-300 transform hover:scale-105 hover:bg-white/10">
-              <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
+            <div className="group bg-white/5 backdrop-blur-sm rounded-xl p-8 border border-white/10 hover:border-purple-500/50 transition-all duration-300 transform hover:scale-105 hover:bg-white/10">
+              <div className="w-16 h-16 bg-gradient-to-r from-purple-500 to-blue-500 rounded-lg flex items-center justify-center mb-6 group-hover:scale-110 transition-transform">
                 <Settings className="w-8 h-8 text-white" />
               </div>
-              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-green-300 transition-colors">
+              <h3 className="text-2xl font-bold mb-4 text-white group-hover:text-purple-300 transition-colors">
                 Service Department
               </h3>
-              <p className="text-sm text-green-300 mb-4 font-medium">
+              <p className="text-sm text-purple-300 mb-4 font-medium">
                 Lower no-shows
               </p>
               <ul className="space-y-3 text-gray-400 group-hover:text-gray-300 transition-colors">
@@ -661,7 +661,7 @@ const CarDealershipAILanding = () => {
               <div className="flex flex-col sm:flex-row gap-4">
                 <a
                   href={`tel:${phoneNumber}`}
-                  className="flex-1 bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                  className="flex-1 bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
                   onClick={() =>
                     window.gtag?.("event", "click_call_ai", {
                       location: "demo_section",
@@ -823,7 +823,7 @@ const CarDealershipAILanding = () => {
 
             <a
               href={`tel:${phoneNumber}`}
-              className="group bg-gradient-to-r from-green-500 to-emerald-500 hover:from-green-600 hover:to-emerald-600 text-white font-bold py-6 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 shadow-2xl hover:shadow-green-500/25"
+              className="group bg-gradient-to-r from-purple-500 to-blue-500 hover:from-purple-600 hover:to-blue-600 text-white font-bold py-6 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 shadow-2xl hover:shadow-purple-500/25"
               onClick={() =>
                 window.gtag?.("event", "click_call_ai", { location: "footer" })
               }
@@ -883,7 +883,7 @@ const CarDealershipAILanding = () => {
         <div className="p-3 flex gap-3">
           <a
             href={`tel:${phoneNumber}`}
-            className="flex-1 inline-flex items-center justify-center rounded-lg bg-emerald-600 hover:bg-emerald-700 py-3 font-semibold text-white transition-colors"
+            className="flex-1 inline-flex items-center justify-center rounded-lg bg-purple-600 hover:bg-purple-700 py-3 font-semibold text-white transition-colors"
             onClick={() =>
               window.gtag?.("event", "click_call_ai", {
                 location: "sticky_mobile",

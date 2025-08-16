@@ -2,7 +2,7 @@ name: Deploy to GitHub Pages
 
 on:
   push:
-    branches: [ main ]
+    branches: [main]
 
 permissions:
   contents: read
@@ -23,61 +23,43 @@ jobs:
       - name: Setup Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '18'
-          
+          node-version: "20"
+
       - name: Install dependencies for main site
-        run: |
-          echo "Installing main site dependencies..."
-          npm ci
-        
+        run: npm ci
+
       - name: Build main site
-        run: |
-          echo "Building main site..."
-          npm run build
-          echo "Main site build complete. Contents:"
-          ls -la dist/
-        
+        run: npm run build
+
       - name: Install dependencies for dealership landing
         run: |
-          echo "Installing dealership dependencies..."
           cd dealership-landing
           npm ci
-        
+
       - name: Build dealership landing
         run: |
-          echo "Building dealership landing..."
           cd dealership-landing
           npm run build
-          echo "Dealership build complete. Contents:"
-          ls -la dist/
-        
+
       - name: Setup Pages
         uses: actions/configure-pages@v4
-        
-              - name: Prepare deployment directory
+
+      - name: Prepare deployment directory
         run: |
           mkdir -p _site
-          echo "Copying main site..."
           cp -r dist/* _site/
-          
-          echo "Creating dealership folder..."
+          cp contact.html _site/
           mkdir -p _site/ai-agent-car-dealerships
-          echo "Copying dealership files..."
           cp -r dealership-landing/dist/* _site/ai-agent-car-dealerships/
-          
-          # Add .nojekyll to prevent GitHub Pages from ignoring folders with underscores
           touch _site/.nojekyll
-          
-          echo "Final structure - HTML files:"
-          find _site -name "*.html" -exec echo "Found: {}" \;
-          
-          echo "Final structure - first 20 files:"
-          find _site | head -20
-        
+          echo "=== DEPLOYMENT STRUCTURE ==="
+          find _site -type f -name "*.html"
+          echo "=== END STRUCTURE ==="
+
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
         with:
-          path: '_site'
+          path: "_site"
 
   deploy:
     environment:
