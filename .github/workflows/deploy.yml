@@ -49,8 +49,15 @@ jobs:
           mkdir -p _site
           cp -r dist/* _site/
           cp contact.html _site/
+
+          # Copy privacy and terms pages from root
+          cp privacy.html _site/privacy.html
+          cp terms.html _site/terms.html
+
+          # Create dealership landing page
           mkdir -p _site/ai-agent-car-dealerships
           cp -r dealership-landing/dist/* _site/ai-agent-car-dealerships/
+
           touch _site/.nojekyll
           echo "=== DEPLOYMENT STRUCTURE ==="
           find _site -type f -name "*.html"
