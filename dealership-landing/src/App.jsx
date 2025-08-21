@@ -159,7 +159,7 @@ const CarDealershipAILanding = () => {
                 })
               }
             >
-              Book Demo
+              Get Started
             </a>
           </div>
         </div>
@@ -253,7 +253,7 @@ const CarDealershipAILanding = () => {
                 }
               >
                 <Calendar className="w-5 h-5" />
-                <span>Start Your Pilot — We'll Match Your Budget</span>
+                <span>Get Started Today</span>
                 <ArrowRight className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
               </a>
 
@@ -273,146 +273,7 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* FAQ Section */}
-      <section className="py-16 px-6 bg-black/30">
-        <div className="container mx-auto max-w-4xl">
-          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
-            Frequently Asked Questions
-          </h2>
-          <div className="space-y-6">
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                Can it use our live inventory and incentives?
-              </h3>
-              <p className="text-gray-300">
-                Yes. We connect to your inventory feed and import current
-                incentives so callers get accurate, on-brand answers.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                How are payments calculated?
-              </h3>
-              <p className="text-gray-300">
-                We apply your finance parameters (APR, term, down payment,
-                trade-in) and display estimates with clear disclaimers.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                Does this replace our receptionist?
-              </h3>
-              <p className="text-gray-300">
-                It can, or it can serve simply as after-hours and overflow
-                coverage—the choice is yours depending on your needs. Most
-                dealerships start with <strong>after-hours and overflow</strong>{" "}
-                coverage, then decide whether to expand to full-time coverage.
-                You control routing rules, escalation to humans, and hours of
-                operation.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                How do handoffs to humans work?
-              </h3>
-              <p className="text-gray-300">
-                The AI can warm-transfer to extensions or cell phones, create
-                call-back tasks, and send transcripts to your CRM. You decide
-                when to escalate—by intent, sentiment, or wait time.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                Where does our data live?
-              </h3>
-              <p className="text-gray-300">
-                Your CRM and inventory data stays in your systems. We store call
-                metadata and model prompts for quality only, following
-                dealership policies. PII redaction and data retention windows
-                are configurable.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                What are our rollout options?
-              </h3>
-              <p className="text-gray-300">
-                Choose a fully managed subscription, a one-time setup with a
-                light service plan, or an enterprise rollout across multiple
-                rooftops. We scope to your budget and systems.
-              </p>
-            </div>
-            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
-              <h3 className="font-semibold text-white mb-2">
-                What if we're not happy?
-              </h3>
-              <p className="text-gray-300">
-                Start with a 14-day pilot. If it's not a fit, cancel—no
-                questions asked.
-              </p>
-            </div>
-          </div>
-        </div>
-      </section>
-
-      {/* Contact Form Section */}
-      <section className="py-16 px-6 bg-gradient-to-r from-blue-900/30 to-cyan-900/30">
-        <div className="container mx-auto">
-          <div className="max-w-2xl mx-auto text-center">
-            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Got a Question?
-            </h2>
-            <p className="text-xl text-gray-300 mb-8">
-              We'd love to hear from you. Send us a message and we'll respond as
-              soon as possible.
-            </p>
-
-            <form
-              action="https://formspree.io/f/mrblewdv"
-              method="POST"
-              className="max-w-lg mx-auto grid grid-cols-1 gap-4 bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-            >
-              <input
-                required
-                name="name"
-                placeholder="Your full name"
-                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
-              />
-              <input
-                required
-                type="email"
-                name="email"
-                placeholder="Your email address"
-                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
-              />
-              <input
-                name="company"
-                placeholder="Company/Dealership name (optional)"
-                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
-              />
-              <textarea
-                name="message"
-                placeholder="Your message..."
-                rows="4"
-                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg resize-vertical"
-              ></textarea>
-              <button
-                type="submit"
-                className="mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
-              >
-                <Mail className="w-5 h-5" />
-                <span>Send Message</span>
-              </button>
-              <p className="text-sm text-gray-400 mt-3 text-center">
-                We'll get back to you within 24 hours. Your information is kept
-                private and secure.
-              </p>
-            </form>
-          </div>
-        </div>
-      </section>
-
-      {/* Features Section */}
+      {/* Features Section - MOVED TO SECOND POSITION */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -652,7 +513,7 @@ const CarDealershipAILanding = () => {
                   }
                 >
                   <Calendar className="w-5 h-5" />
-                  <span>Book Demo</span>
+                  <span>Get Started</span>
                 </a>
               </div>
             </div>
@@ -763,7 +624,146 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* CTA Section */}
+      {/* FAQ Section - MOVED TO BOTTOM */}
+      <section className="py-16 px-6 bg-black/30">
+        <div className="container mx-auto max-w-4xl">
+          <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
+            Frequently Asked Questions
+          </h2>
+          <div className="space-y-6">
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                Can it use our live inventory and incentives?
+              </h3>
+              <p className="text-gray-300">
+                Yes. We connect to your inventory feed and import current
+                incentives so callers get accurate, on-brand answers.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                How are payments calculated?
+              </h3>
+              <p className="text-gray-300">
+                We apply your finance parameters (APR, term, down payment,
+                trade-in) and display estimates with clear disclaimers.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                Does this replace our receptionist?
+              </h3>
+              <p className="text-gray-300">
+                It can, or it can serve simply as after-hours and overflow
+                coverage—the choice is yours depending on your needs. Most
+                dealerships start with <strong>after-hours and overflow</strong>{" "}
+                coverage, then decide whether to expand to full-time coverage.
+                You control routing rules, escalation to humans, and hours of
+                operation.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                How do handoffs to humans work?
+              </h3>
+              <p className="text-gray-300">
+                The AI can warm-transfer to extensions or cell phones, create
+                call-back tasks, and send transcripts to your CRM. You decide
+                when to escalate—by intent, sentiment, or wait time.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                Where does our data live?
+              </h3>
+              <p className="text-gray-300">
+                Your CRM and inventory data stays in your systems. We store call
+                metadata and model prompts for quality only, following
+                dealership policies. PII redaction and data retention windows
+                are configurable.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                What are our rollout options?
+              </h3>
+              <p className="text-gray-300">
+                Choose a fully managed subscription, a one-time setup with a
+                light service plan, or an enterprise rollout across multiple
+                rooftops. We scope to your budget and systems.
+              </p>
+            </div>
+            <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
+              <h3 className="font-semibold text-white mb-2">
+                What if we're not happy?
+              </h3>
+              <p className="text-gray-300">
+                Start with a 14-day pilot. If it's not a fit, cancel—no
+                questions asked.
+              </p>
+            </div>
+          </div>
+        </div>
+      </section>
+
+      {/* Contact Form Section - MOVED TO BOTTOM */}
+      <section className="py-16 px-6 bg-gradient-to-r from-blue-900/30 to-cyan-900/30">
+        <div className="container mx-auto">
+          <div className="max-w-2xl mx-auto text-center">
+            <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
+              Got a Question?
+            </h2>
+            <p className="text-xl text-gray-300 mb-8">
+              We'd love to hear from you. Send us a message and we'll respond as
+              soon as possible.
+            </p>
+
+            <form
+              action="https://formspree.io/f/mrblewdv"
+              method="POST"
+              className="max-w-lg mx-auto grid grid-cols-1 gap-4 bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
+            >
+              <input
+                required
+                name="name"
+                placeholder="Your full name"
+                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
+              />
+              <input
+                required
+                type="email"
+                name="email"
+                placeholder="Your email address"
+                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
+              />
+              <input
+                name="company"
+                placeholder="Company/Dealership name (optional)"
+                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
+              />
+              <textarea
+                name="message"
+                placeholder="Your message..."
+                rows={4}
+                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg resize-vertical"
+              ></textarea>
+              <button
+                type="submit"
+                className="mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
+              >
+                <Mail className="w-5 h-5" />
+                <span>Send Message</span>
+              </button>
+              <p className="text-sm text-gray-400 mt-3 text-center">
+                We'll get back to you within 24 hours. Your information is kept
+                private and secure.
+              </p>
+            </form>
+          </div>
+        </div>
+      </section>
+
+      {/* CTA Section - SIMPLIFIED TO ONE BUTTON */}
       <section className="py-20 px-6 bg-gradient-to-r from-purple-900/50 to-blue-900/50">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -775,7 +775,7 @@ const CarDealershipAILanding = () => {
             and see how much business you've been leaving on the table.
           </p>
 
-          <div className="flex flex-col md:flex-row gap-6 justify-center items-center">
+          <div className="flex justify-center">
             <a
               href={`${bookUrl}?utm_source=lp&utm_medium=cta&utm_campaign=footer`}
               className="group bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-6 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 shadow-2xl hover:shadow-purple-500/25"
@@ -786,19 +786,8 @@ const CarDealershipAILanding = () => {
               }
             >
               <Calendar className="w-6 h-6" />
-              <span>Start Your Pilot</span>
+              <span>Get Started Today</span>
               <ArrowRight className="w-6 h-6 group-hover:translate-x-1 transition-transform" />
-            </a>
-
-            <a
-              href={`tel:${phoneNumber}`}
-              className="group bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-6 px-12 rounded-full text-xl transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-3 shadow-2xl hover:shadow-cyan-500/25"
-              onClick={() =>
-                window.gtag?.("event", "click_call_ai", { location: "footer" })
-              }
-            >
-              <PhoneCall className="w-6 h-6" />
-              <span>{phoneDisplay}</span>
             </a>
           </div>
 
@@ -884,7 +873,7 @@ const CarDealershipAILanding = () => {
               })
             }
           >
-            <Calendar className="w-5 h-5 mr-2" /> Book Demo
+            <Calendar className="w-5 h-5 mr-2" /> Get Started
           </a>
         </div>
       </div>
