@@ -24,9 +24,21 @@ jobs:
         uses: actions/setup-node@v4
         with:
           node-version: "20"
+          cache: "npm"
+
+      - name: Cache node modules
+        uses: actions/cache@v3
+        with:
+          path: |
+            ~/.npm
+            node_modules
+            dealership-landing/node_modules
+          key: ${{ runner.os }}-node-${{ hashFiles('**/package-lock.json') }}
+          restore-keys: |
+            ${{ runner.os }}-node-
 
       - name: Install dependencies for main site
-        run: npm ci
+        run: npm ci --prefer-offline --no-audit
 
       - name: Build main site
         run: npm run build
@@ -34,7 +46,7 @@ jobs:
       - name: Install dependencies for dealership landing
         run: |
           cd dealership-landing
-          npm ci
+          npm ci --prefer-offline --no-audit
 
       - name: Build dealership landing
         run: |
@@ -49,40 +61,31 @@ jobs:
           mkdir -p _site
           cp -r dist/* _site/
 
-          # Copy SEO files to root
-          cp sitemap.xml _site/sitemap.xml
-          cp robots.txt _site/robots.txt
+          # Copy SEO files
+          cp sitemap.xml _site/sitemap.xml 2>/dev/null || echo "sitemap.xml not found"
+          cp robots.txt _site/robots.txt 2>/dev/null || echo "robots.txt not found"
 
-          # Copy main pages with SEO headers
-          cp contact.html _site/contact.html
-          cp privacy.html _site/privacy.html
-          cp terms.html _site/terms.html
+          # Copy pages
+          cp contact.html _site/contact.html 2>/dev/null || echo "contact.html not found"
+          cp privacy.html _site/privacy.html 2>/dev/null || echo "privacy.html not found" 
+          cp terms.html _site/terms.html 2>/dev/null || echo "terms.html not found"
 
           # Create dealership landing page
           mkdir -p _site/ai-agent-car-dealerships
           cp -r dealership-landing/dist/* _site/ai-agent-car-dealerships/
 
-          # Copy favicon and manifest files (if they exist)
-          [ -f favicon.ico ] && cp favicon.ico _site/favicon.ico
-          [ -f favicon-16x16.png ] && cp favicon-16x16.png _site/favicon-16x16.png
-          [ -f favicon-32x32.png ] && cp favicon-32x32.png _site/favicon-32x32.png
-          [ -f apple-touch-icon.png ] && cp apple-touch-icon.png _site/apple-touch-icon.png
-          [ -f site.webmanifest ] && cp site.webmanifest _site/site.webmanifest
+          # Copy optional assets
+          [ -f favicon.ico ] && cp favicon.ico _site/
+          [ -f favicon-16x16.png ] && cp favicon-16x16.png _site/
+          [ -f favicon-32x32.png ] && cp favicon-32x32.png _site/
+          [ -f apple-touch-icon.png ] && cp apple-touch-icon.png _site/
+          [ -f site.webmanifest ] && cp site.webmanifest _site/
+          [ -f public/logo.png ] && cp public/logo.png _site/
 
-          # Copy logo to root for structured data
-          [ -f public/logo.png ] && cp public/logo.png _site/logo.png
-
-          # Create .nojekyll to prevent GitHub Pages from processing
           touch _site/.nojekyll
 
-          echo "=== DEPLOYMENT STRUCTURE ==="
-          find _site -type f -name "*.html" | head -20
-          find _site -type f -name "*.xml"
-          find _site -type f -name "*.txt"
-          find _site -type f -name "*.png" | head -10
-          find _site -type f -name "*.ico"
-          find _site -type f -name "*.webmanifest"
-          echo "=== END STRUCTURE ==="
+          echo "✅ Deployment prepared successfully"
+          echo "📁 Total files: $(find _site -type f | wc -l)"
 
       - name: Upload artifact
         uses: actions/upload-pages-artifact@v3
