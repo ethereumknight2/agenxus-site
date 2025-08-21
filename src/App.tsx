@@ -24,6 +24,7 @@ import {
   Zap,
   Star,
   Quote,
+  Car,
 } from "lucide-react";
 import { useRef, useEffect, useState } from "react";
 
@@ -288,7 +289,7 @@ export default function App() {
                 About
               </a>
               <motion.a
-                href="https://cal.com/michael-eisner-vklnu2"
+                href="https://cal.com/agenxus/discoverycall-30min"
                 target="_blank"
                 rel="noopener noreferrer"
                 whileHover={{ scale: 1.05 }}
@@ -452,7 +453,7 @@ export default function App() {
             className="flex flex-col sm:flex-row gap-4 justify-center items-center relative z-50"
           >
             <motion.a
-              href="https://cal.com/michael-eisner-vklnu2"
+              href="https://cal.com/agenxus/discoverycall-30min"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{
@@ -609,7 +610,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Industries Section - SIMPLIFIED ICONS */}
+      {/* Industries Section - ADDED AUTO DEALERSHIPS */}
       <section
         id="industries"
         className="relative py-32 px-4 bg-gradient-to-b from-transparent to-gray-900/20"
@@ -657,22 +658,28 @@ export default function App() {
               delay={0.3}
             />
             <IndustryCard
+              icon={<Car className="w-8 h-8" />}
+              title="Auto Dealerships"
+              description="Never miss a sales or service call. AI agents handle inventory queries, book test drives, and schedule maintenance 24/7."
+              delay={0.4}
+            />
+            <IndustryCard
               icon={<Scale className="w-8 h-8" />}
               title="Legal Services"
               description="Law firms can automate lead intake, appointment setting, and initial qualification."
-              delay={0.4}
+              delay={0.5}
             />
             <IndustryCard
               icon={<GraduationCap className="w-8 h-8" />}
               title="Coaching & Education"
               description="AI tutors and onboarding bots help coaches and course creators deliver personalized support."
-              delay={0.5}
+              delay={0.6}
             />
           </div>
         </div>
       </section>
 
-      {/* Testimonials Section */}
+      {/* Testimonials Section - UPDATED WITH INITIALS */}
       <section className="relative py-32 px-4 bg-gradient-to-b from-gray-900/20 to-transparent">
         <div className="max-w-7xl mx-auto">
           <motion.div
@@ -700,49 +707,43 @@ export default function App() {
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
             <TestimonialCard
               quote="Our voice agent handles 85% of incoming calls and books 40% more appointments than our previous system. It's like having our best receptionist working 24/7 without breaks."
-              author="Sarah Mitchell"
+              author="Sarah M."
               role="Owner"
-              company="Elite HVAC Solutions"
               rating={5}
               delay={0.1}
             />
             <TestimonialCard
               quote="The AI chat agent on our website converted 60% more leads in the first month. Patients love getting instant answers about treatments and scheduling, even at 2 AM."
-              author="Dr. James Rodriguez"
+              author="Dr. James R."
               role="Practice Owner"
-              company="Rivera Dental Group"
               rating={5}
               delay={0.2}
             />
             <TestimonialCard
               quote="Since implementing Agenxus automation, we've reduced manual data entry by 90% and our team can focus on closing deals instead of admin work. Game changer for our productivity."
-              author="Michael Chen"
+              author="Michael C."
               role="Sales Director"
-              company="Premier Real Estate"
               rating={5}
               delay={0.3}
             />
             <TestimonialCard
               quote="The video AI onboarding system has helped us scale our coaching program to 500+ students without hiring additional support staff. The personalization is incredible."
-              author="Lisa Thompson"
+              author="Lisa T."
               role="Business Coach"
-              company="Success Accelerator"
               rating={5}
               delay={0.4}
             />
             <TestimonialCard
               quote="Our law firm's intake process went from 3 days to 3 hours. The AI qualifies leads perfectly and our conversion rate has doubled. Best investment we've made."
-              author="Robert Walsh"
+              author="Robert W."
               role="Managing Partner"
-              company="Walsh & Associates"
               rating={5}
               delay={0.5}
             />
             <TestimonialCard
               quote="The pest control booking agent handles seasonal rushes flawlessly. We went from missing 30% of calls to capturing every lead. Revenue increased 45% in peak season."
-              author="Jennifer Adams"
+              author="Jennifer A."
               role="Operations Manager"
-              company="Guardian Pest Control"
               rating={5}
               delay={0.6}
             />
@@ -1016,7 +1017,7 @@ export default function App() {
 
           <div className="flex flex-col sm:flex-row gap-4 justify-center">
             <motion.a
-              href="https://cal.com/michael-eisner-vklnu2"
+              href="https://cal.com/agenxus/discoverycall-30min"
               target="_blank"
               rel="noopener noreferrer"
               whileHover={{ scale: 1.05 }}
@@ -1170,7 +1171,6 @@ interface IndustryCardProps {
   delay: number;
 }
 
-// SIMPLIFIED IndustryCard - This is the only change from the original
 function IndustryCard({ icon, title, description, delay }: IndustryCardProps) {
   const ref = useRef(null);
   const isInView = useInView(ref, { once: true, margin: "-50px" });
@@ -1246,7 +1246,6 @@ interface TestimonialCardProps {
   quote: string;
   author: string;
   role: string;
-  company: string;
   rating: number;
   delay: number;
 }
@@ -1255,7 +1254,6 @@ function TestimonialCard({
   quote,
   author,
   role,
-  company,
   rating,
   delay,
 }: TestimonialCardProps) {
@@ -1361,7 +1359,6 @@ function TestimonialCard({
         >
           <div className="font-semibold text-white text-sm">{author}</div>
           <div className="text-gray-400 text-xs">{role}</div>
-          <div className="text-blue-400 text-xs font-medium">{company}</div>
         </motion.div>
 
         {/* Decorative element */}

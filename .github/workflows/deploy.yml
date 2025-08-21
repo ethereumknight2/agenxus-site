@@ -48,9 +48,13 @@ jobs:
         run: |
           mkdir -p _site
           cp -r dist/* _site/
-          cp contact.html _site/
 
-          # Copy privacy and terms pages from root
+          # Copy SEO files to root
+          cp sitemap.xml _site/sitemap.xml
+          cp robots.txt _site/robots.txt
+
+          # Copy main pages with SEO headers
+          cp contact.html _site/contact.html
           cp privacy.html _site/privacy.html
           cp terms.html _site/terms.html
 
@@ -58,9 +62,26 @@ jobs:
           mkdir -p _site/ai-agent-car-dealerships
           cp -r dealership-landing/dist/* _site/ai-agent-car-dealerships/
 
+          # Copy favicon and manifest files (if they exist)
+          [ -f favicon.ico ] && cp favicon.ico _site/favicon.ico
+          [ -f favicon-16x16.png ] && cp favicon-16x16.png _site/favicon-16x16.png
+          [ -f favicon-32x32.png ] && cp favicon-32x32.png _site/favicon-32x32.png
+          [ -f apple-touch-icon.png ] && cp apple-touch-icon.png _site/apple-touch-icon.png
+          [ -f site.webmanifest ] && cp site.webmanifest _site/site.webmanifest
+
+          # Copy logo to root for structured data
+          [ -f public/logo.png ] && cp public/logo.png _site/logo.png
+
+          # Create .nojekyll to prevent GitHub Pages from processing
           touch _site/.nojekyll
+
           echo "=== DEPLOYMENT STRUCTURE ==="
-          find _site -type f -name "*.html"
+          find _site -type f -name "*.html" | head -20
+          find _site -type f -name "*.xml"
+          find _site -type f -name "*.txt"
+          find _site -type f -name "*.png" | head -10
+          find _site -type f -name "*.ico"
+          find _site -type f -name "*.webmanifest"
           echo "=== END STRUCTURE ==="
 
       - name: Upload artifact
