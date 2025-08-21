@@ -18,10 +18,9 @@ import {
 
 const CarDealershipAILanding = () => {
   const brand = "Agenxus";
-  const phoneNumber = "+16312281374";
-  const phoneDisplay = "(631) 228-1374";
+  const phoneNumber = "+19172031833";
+  const phoneDisplay = "(917) 203-1833";
   const bookUrl = "https://cal.com/agenxus/discoverycall-30min";
-  const webhookUrl = "https://YOUR-N8N-ENDPOINT/webhook/lead";
 
   // Dynamic logo path that works in dev and production
   const logoPath = `${import.meta.env.BASE_URL}logo.png`;
@@ -262,7 +261,7 @@ const CarDealershipAILanding = () => {
                 className="group bg-transparent border-2 border-purple-500 hover:bg-purple-500/20 text-purple-400 hover:text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
               >
                 <Play className="w-5 h-5" />
-                <span>Watch Demo Video</span>
+                <span>Watch Video</span>
               </button>
             </div>
 
@@ -355,53 +354,22 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* Lead Form Section */}
+      {/* Contact Form Section */}
       <section className="py-16 px-6 bg-gradient-to-r from-blue-900/30 to-cyan-900/30">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto text-center">
             <h2 className="text-3xl md:text-4xl font-bold mb-4 text-white">
-              Can't Call Right Now?
+              Got a Question?
             </h2>
             <p className="text-xl text-gray-300 mb-8">
-              Get the 10-minute walkthrough sent to your inbox
+              We'd love to hear from you. Send us a message and we'll respond as
+              soon as possible.
             </p>
 
             <form
+              action="https://formspree.io/f/mrblewdv"
+              method="POST"
               className="max-w-lg mx-auto grid grid-cols-1 gap-4 bg-white/10 backdrop-blur-sm p-8 rounded-2xl border border-white/20"
-              onSubmit={async (e) => {
-                e.preventDefault();
-                const fd = new FormData(e.currentTarget);
-
-                const urlParams = new URLSearchParams(window.location.search);
-
-                try {
-                  await fetch(webhookUrl, {
-                    method: "POST",
-                    body: JSON.stringify({
-                      name: fd.get("name"),
-                      email: fd.get("email"),
-                      dealership: fd.get("dealership"),
-                      source: "dealers-lp",
-                      utm_source: urlParams.get("utm_source"),
-                      utm_medium: urlParams.get("utm_medium"),
-                      utm_campaign: urlParams.get("utm_campaign"),
-                      timestamp: new Date().toISOString(),
-                    }),
-                    headers: { "Content-Type": "application/json" },
-                  });
-
-                  window.gtag?.("event", "submit_lead", {
-                    location: "lead_section",
-                  });
-                  e.currentTarget.reset();
-                  alert("Thanks! We'll send you the walkthrough shortly.");
-                } catch (error) {
-                  console.error("Form submission failed:", error);
-                  alert(
-                    "Something went wrong. Please try again or call us directly."
-                  );
-                }
-              }}
             >
               <input
                 required
@@ -413,24 +381,30 @@ const CarDealershipAILanding = () => {
                 required
                 type="email"
                 name="email"
-                placeholder="Work email address"
+                placeholder="Your email address"
                 className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
               />
               <input
-                name="dealership"
-                placeholder="Dealership name (optional)"
+                name="company"
+                placeholder="Company/Dealership name (optional)"
                 className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg"
               />
+              <textarea
+                name="message"
+                placeholder="Your message..."
+                rows="4"
+                className="px-4 py-4 rounded-lg bg-black/40 border border-white/20 outline-none focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 text-white placeholder-gray-400 text-lg resize-vertical"
+              ></textarea>
               <button
                 type="submit"
                 className="mt-2 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-lg text-lg transition-all duration-300 transform hover:scale-105 flex items-center justify-center space-x-2"
               >
-                <Calendar className="w-5 h-5" />
-                <span>Send Me the Walkthrough</span>
+                <Mail className="w-5 h-5" />
+                <span>Send Message</span>
               </button>
               <p className="text-sm text-gray-400 mt-3 text-center">
-                We only use your email to send the walkthrough. No resale. Data
-                stays in your systems; we log metadata only.
+                We'll get back to you within 24 hours. Your information is kept
+                private and secure.
               </p>
             </form>
           </div>
@@ -694,10 +668,8 @@ const CarDealershipAILanding = () => {
                   </button>
                 </div>
                 <div className="mt-4 text-center">
-                  <h4 className="text-lg font-semibold mb-2">
-                    Watch Full Demo
-                  </h4>
-                  <p className="text-gray-400">See all features in action</p>
+                  <h4 className="text-lg font-semibold mb-2">Watch Video</h4>
+                  <p className="text-gray-400">See all the features</p>
                 </div>
               </div>
             </div>
@@ -856,19 +828,33 @@ const CarDealershipAILanding = () => {
       {showVideo && (
         <div className="fixed inset-0 z-50 bg-black/90 grid place-items-center p-4">
           <div className="w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src="https://www.youtube-nocookie.com/embed/YOUR_VIDEO_ID?autoplay=1"
-              title="AI Receptionist Demo"
-              allow="autoplay; fullscreen"
-              allowFullScreen
-              loading="lazy"
-            />
+            <video
+              className="w-full h-full object-cover"
+              controls
+              autoPlay
+              preload="metadata"
+            >
+              <source src="/public/videos/agenxus.mp4" type="video/mp4" />
+              Your browser does not support the video tag.
+            </video>
           </div>
           <button
-            className="mt-4 text-gray-300 hover:text-white transition-colors"
+            className="mt-4 text-gray-300 hover:text-white transition-colors flex items-center gap-2"
             onClick={() => setShowVideo(false)}
           >
+            <svg
+              className="w-5 h-5"
+              fill="none"
+              stroke="currentColor"
+              viewBox="0 0 24 24"
+            >
+              <path
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                strokeWidth={2}
+                d="M6 18L18 6M6 6l12 12"
+              />
+            </svg>
             Close Video
           </button>
         </div>

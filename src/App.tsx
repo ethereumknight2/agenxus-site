@@ -163,6 +163,13 @@ interface TechItemProps {
   items: string[];
 }
 
+interface ContactItemProps {
+  icon: React.ReactNode;
+  title: string;
+  content: React.ReactNode;
+  link?: string;
+}
+
 function TechItem({ title, items }: TechItemProps) {
   return (
     <div className="space-y-2">
@@ -176,6 +183,31 @@ function TechItem({ title, items }: TechItemProps) {
       </div>
     </div>
   );
+}
+
+function ContactItem({ icon, title, content, link }: ContactItemProps) {
+  const ItemContent = () => (
+    <motion.div
+      whileHover={{ x: 5 }}
+      className="flex items-start gap-4 p-4 rounded-xl hover:bg-white/5 transition-all duration-300"
+    >
+      <div className="text-blue-400 flex-shrink-0 mt-1">{icon}</div>
+      <div>
+        <h4 className="font-semibold text-white mb-1">{title}</h4>
+        <div className="text-gray-300 text-sm leading-relaxed">{content}</div>
+      </div>
+    </motion.div>
+  );
+
+  if (link) {
+    return (
+      <a href={link} className="block">
+        <ItemContent />
+      </a>
+    );
+  }
+
+  return <ItemContent />;
 }
 
 export default function App() {
@@ -610,7 +642,7 @@ export default function App() {
         </div>
       </section>
 
-      {/* Industries Section - ADDED AUTO DEALERSHIPS */}
+      {/* Industries Section */}
       <section
         id="industries"
         className="relative py-32 px-4 bg-gradient-to-b from-transparent to-gray-900/20"
@@ -676,96 +708,6 @@ export default function App() {
               delay={0.6}
             />
           </div>
-        </div>
-      </section>
-
-      {/* Testimonials Section - UPDATED WITH INITIALS */}
-      <section className="relative py-32 px-4 bg-gradient-to-b from-gray-900/20 to-transparent">
-        <div className="max-w-7xl mx-auto">
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8 }}
-            viewport={{ once: true }}
-            className="text-center mb-20"
-          >
-            <h2 className="text-5xl md:text-6xl font-bold mb-6">
-              <span className="bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
-                What Our Clients
-              </span>
-              <br />
-              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
-                Are Saying
-              </span>
-            </h2>
-            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
-              Discover how AI agents have transformed businesses across
-              industries, driving growth and efficiency 24/7.
-            </p>
-          </motion.div>
-
-          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
-            <TestimonialCard
-              quote="Our voice agent handles 85% of incoming calls and books 40% more appointments than our previous system. It's like having our best receptionist working 24/7 without breaks."
-              author="Sarah M."
-              role="Owner"
-              rating={5}
-              delay={0.1}
-            />
-            <TestimonialCard
-              quote="The AI chat agent on our website converted 60% more leads in the first month. Patients love getting instant answers about treatments and scheduling, even at 2 AM."
-              author="Dr. James R."
-              role="Practice Owner"
-              rating={5}
-              delay={0.2}
-            />
-            <TestimonialCard
-              quote="Since implementing Agenxus automation, we've reduced manual data entry by 90% and our team can focus on closing deals instead of admin work. Game changer for our productivity."
-              author="Michael C."
-              role="Sales Director"
-              rating={5}
-              delay={0.3}
-            />
-            <TestimonialCard
-              quote="The video AI onboarding system has helped us scale our coaching program to 500+ students without hiring additional support staff. The personalization is incredible."
-              author="Lisa T."
-              role="Business Coach"
-              rating={5}
-              delay={0.4}
-            />
-            <TestimonialCard
-              quote="Our law firm's intake process went from 3 days to 3 hours. The AI qualifies leads perfectly and our conversion rate has doubled. Best investment we've made."
-              author="Robert W."
-              role="Managing Partner"
-              rating={5}
-              delay={0.5}
-            />
-            <TestimonialCard
-              quote="The pest control booking agent handles seasonal rushes flawlessly. We went from missing 30% of calls to capturing every lead. Revenue increased 45% in peak season."
-              author="Jennifer A."
-              role="Operations Manager"
-              rating={5}
-              delay={0.6}
-            />
-          </div>
-
-          {/* Stats Section */}
-          <motion.div
-            initial={{ opacity: 0, y: 30 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.3 }}
-            viewport={{ once: true }}
-            className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-20 pt-20 border-t border-white/10"
-          >
-            <StatCard number="95%" label="Client Satisfaction" delay={0.1} />
-            <StatCard number="60%" label="Average Lead Increase" delay={0.2} />
-            <StatCard number="24/7" label="Uptime Guaranteed" delay={0.3} />
-            <StatCard
-              number="30 Days"
-              label="Average ROI Timeline"
-              delay={0.4}
-            />
-          </motion.div>
         </div>
       </section>
 
@@ -866,6 +808,100 @@ export default function App() {
               </div>
             </motion.div>
           </div>
+        </div>
+      </section>
+
+      {/* Testimonials Section */}
+      <section className="relative py-32 px-4 bg-gradient-to-b from-gray-900/20 to-transparent">
+        <div className="max-w-7xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+                What Our Clients
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Are Saying
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Discover how AI agents have transformed businesses across
+              industries, driving growth and efficiency 24/7.
+            </p>
+          </motion.div>
+
+          <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8">
+            <TestimonialCard
+              quote="Our voice agent handles 85% of incoming calls and books 40% more appointments than our previous system. It's like having our best receptionist working 24/7 without breaks."
+              author="Sarah M."
+              role="Owner"
+              rating={5}
+              delay={0.1}
+            />
+            <TestimonialCard
+              quote="The AI chat agent on our website converted 60% more leads in the first month. Patients love getting instant answers about treatments and scheduling, even at 2 AM."
+              author="Dr. James R."
+              role="Practice Owner"
+              rating={5}
+              delay={0.2}
+            />
+            <TestimonialCard
+              quote="Since implementing Agenxus automation, we've reduced manual data entry by 90% and our team can focus on closing deals instead of admin work. Game changer for our productivity."
+              author="Michael C."
+              role="Sales Director"
+              rating={5}
+              delay={0.3}
+            />
+            <TestimonialCard
+              quote="The video AI onboarding system has helped us scale our coaching program to 500+ students without hiring additional support staff. The personalization is incredible."
+              author="Lisa T."
+              role="Business Coach"
+              rating={5}
+              delay={0.4}
+            />
+            <TestimonialCard
+              quote="Our law firm's intake process went from 3 days to 3 hours. The AI qualifies leads perfectly and our conversion rate has doubled. Best investment we've made."
+              author="Robert W."
+              role="Managing Partner"
+              rating={5}
+              delay={0.5}
+            />
+            <TestimonialCard
+              quote="The pest control booking agent handles seasonal rushes flawlessly. We went from missing 30% of calls to capturing every lead. Revenue increased 45% in peak season."
+              author="Jennifer A."
+              role="Operations Manager"
+              rating={5}
+              delay={0.6}
+            />
+          </div>
+
+          {/* Stats Section */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8, delay: 0.3 }}
+            viewport={{ once: true }}
+            className="grid grid-cols-1 md:grid-cols-4 gap-8 mt-20 pt-20 border-t border-white/10"
+          >
+            <StatCard
+              number="$15k+"
+              label="Monthly Revenue Boost"
+              delay={0.1}
+            />
+            <StatCard number="60%" label="Average Lead Increase" delay={0.2} />
+            <StatCard number="24/7" label="Uptime Guaranteed" delay={0.3} />
+            <StatCard
+              number="30 Days"
+              label="Average ROI Timeline"
+              delay={0.4}
+            />
+          </motion.div>
         </div>
       </section>
 
@@ -993,6 +1029,66 @@ export default function App() {
         </div>
       </section>
 
+      {/* FAQ Section */}
+      <section className="relative py-32 px-4">
+        <div className="max-w-4xl mx-auto">
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="text-center mb-20"
+          >
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-gray-100 to-gray-300 bg-clip-text text-transparent">
+                Frequently Asked
+              </span>
+              <br />
+              <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                Questions
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 max-w-3xl mx-auto">
+              Everything you need to know about AI agents and how they can
+              transform your business
+            </p>
+          </motion.div>
+
+          <div className="space-y-6">
+            <FAQItem
+              question="How quickly can an AI agent be deployed?"
+              answer="Most AI agents can be deployed within 2-4 weeks, depending on complexity. Simple voice agents can often be live within 1 week, while more complex integrations with multiple systems may take 3-4 weeks."
+              delay={0.1}
+            />
+            <FAQItem
+              question="What's the ROI of implementing AI agents?"
+              answer="Most clients see ROI within 30-60 days. Benefits include 24/7 availability, 40-60% increase in lead capture, reduced staffing costs, and improved customer satisfaction. The average business saves $3,000-8,000 monthly on staffing while increasing revenue."
+              delay={0.2}
+            />
+            <FAQItem
+              question="Can AI agents integrate with my existing systems?"
+              answer="Yes! We specialize in integrating with popular CRMs (Salesforce, HubSpot, Go High Level), calendars (Calendly, Cal.com), phone systems, and business tools. Our agents work within your existing workflow."
+              delay={0.3}
+            />
+            <FAQItem
+              question="How human-like are the AI voice agents?"
+              answer="Our voice agents are virtually indistinguishable from human representatives. They handle interruptions, natural conversation flow, and emotional nuances. Most customers don't realize they're speaking with AI."
+              delay={0.4}
+            />
+            <FAQItem
+              question="What happens if the AI can't handle a request?"
+              answer="Agents are programmed to seamlessly transfer to human staff when needed. They can identify complex requests, escalate frustrated customers, or handle situations requiring human judgment. You maintain full control."
+              delay={0.5}
+            />
+            <FAQItem
+              question="Is my business data secure?"
+              answer="Absolutely. We use enterprise-grade security, end-to-end encryption, and comply with GDPR, HIPAA, and other regulations. Your data stays within your systems—we only access what's necessary for the agent to function."
+              delay={0.6}
+            />
+          </div>
+        </div>
+      </section>
+
       {/* CTA Section */}
       <section className="relative py-32 px-4">
         <motion.div
@@ -1029,7 +1125,7 @@ export default function App() {
             </motion.a>
 
             <motion.a
-              href="contact.html"
+              href="#contact"
               whileHover={{ scale: 1.05 }}
               whileTap={{ scale: 0.95 }}
               className="border border-white/20 text-white font-semibold py-4 px-8 rounded-full hover:bg-white/5 transition-all duration-300 flex items-center justify-center gap-2"
@@ -1040,6 +1136,212 @@ export default function App() {
           </div>
         </motion.div>
       </section>
+
+      {/* Contact & Footer Section */}
+      <footer
+        id="contact"
+        className="relative bg-gradient-to-b from-gray-900/50 to-black border-t border-white/10"
+      >
+        <div className="max-w-7xl mx-auto px-4 py-16">
+          <div className="grid grid-cols-1 lg:grid-cols-2 gap-12 items-start">
+            {/* Contact Form */}
+            <motion.div
+              initial={{ opacity: 0, x: -30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+            >
+              <h3 className="text-3xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Send Us a Message
+                </span>
+              </h3>
+              <p className="text-gray-300 mb-8">
+                Ready to transform your business with AI? Drop us a line and
+                we'll get back to you within 24 hours.
+              </p>
+
+              <form
+                action="https://formspree.io/f/mrblewdv"
+                method="POST"
+                className="space-y-4"
+              >
+                <div className="grid grid-cols-1 md:grid-cols-2 gap-4">
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    required
+                    name="name"
+                    placeholder="Your full name"
+                    className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300"
+                  />
+                  <motion.input
+                    whileFocus={{ scale: 1.02 }}
+                    required
+                    type="email"
+                    name="email"
+                    placeholder="Your email address"
+                    className="px-4 py-3 rounded-lg bg-white/10 border border-white/20 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300"
+                  />
+                </div>
+
+                <motion.input
+                  whileFocus={{ scale: 1.02 }}
+                  name="company"
+                  placeholder="Company name (optional)"
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 transition-all duration-300"
+                />
+
+                <motion.textarea
+                  whileFocus={{ scale: 1.02 }}
+                  name="message"
+                  placeholder="Tell us about your project..."
+                  rows={4}
+                  className="w-full px-4 py-3 rounded-lg bg-white/10 border border-white/20 outline-none focus:border-blue-400 focus:ring-2 focus:ring-blue-400/20 text-white placeholder-gray-400 resize-vertical transition-all duration-300"
+                ></motion.textarea>
+
+                <motion.button
+                  type="submit"
+                  whileHover={{ scale: 1.05 }}
+                  whileTap={{ scale: 0.95 }}
+                  className="w-full bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-semibold py-3 px-6 rounded-lg transition-all duration-300 flex items-center justify-center gap-2"
+                >
+                  <Mail className="w-5 h-5" />
+                  <span>Send Message</span>
+                </motion.button>
+              </form>
+            </motion.div>
+
+            {/* Contact Information */}
+            <motion.div
+              initial={{ opacity: 0, x: 30 }}
+              whileInView={{ opacity: 1, x: 0 }}
+              transition={{ duration: 0.8 }}
+              viewport={{ once: true }}
+              className="space-y-8"
+            >
+              <div>
+                <h3 className="text-3xl font-bold mb-6">
+                  <span className="bg-gradient-to-r from-purple-400 to-pink-400 bg-clip-text text-transparent">
+                    Get In Touch
+                  </span>
+                </h3>
+                <p className="text-gray-300 text-lg leading-relaxed">
+                  Ready to see how AI agents can transform your business? We're
+                  here to help you get started.
+                </p>
+              </div>
+
+              <div className="space-y-6">
+                <ContactItem
+                  icon={<Mail className="w-6 h-6" />}
+                  title="Email"
+                  content="hello@agenxus.com"
+                  link="mailto:hello@agenxus.com"
+                />
+
+                <ContactItem
+                  icon={<Phone className="w-6 h-6" />}
+                  title="Phone"
+                  content="+1 (555) 123-4567"
+                  link="tel:+15551234567"
+                />
+
+                <ContactItem
+                  icon={<Building2 className="w-6 h-6" />}
+                  title="Office"
+                  content={
+                    <>
+                      123 Innovation Drive
+                      <br />
+                      San Francisco, CA 94105
+                      <br />
+                      United States
+                    </>
+                  }
+                />
+
+                <ContactItem
+                  icon={<Calendar className="w-6 h-6" />}
+                  title="Business Hours"
+                  content={
+                    <>
+                      Monday - Friday: 9:00 AM - 6:00 PM PST
+                      <br />
+                      Saturday: 10:00 AM - 4:00 PM PST
+                      <br />
+                      Sunday: Closed
+                    </>
+                  }
+                />
+              </div>
+
+              {/* Quick Response Promise */}
+              <motion.div
+                className="bg-gradient-to-r from-blue-500/10 to-purple-500/10 border border-blue-400/20 rounded-xl p-6"
+                whileHover={{ scale: 1.02 }}
+                transition={{ duration: 0.3 }}
+              >
+                <div className="flex items-center gap-3 mb-3">
+                  <Zap className="w-5 h-5 text-yellow-400" />
+                  <span className="font-semibold text-white">
+                    Quick Response
+                  </span>
+                </div>
+                <p className="text-gray-300 text-sm">
+                  We typically respond to all inquiries within 2-4 hours during
+                  business hours. For urgent matters, please call us directly.
+                </p>
+              </motion.div>
+            </motion.div>
+          </div>
+
+          {/* Bottom Footer */}
+          <motion.div
+            initial={{ opacity: 0, y: 20 }}
+            whileInView={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.8 }}
+            viewport={{ once: true }}
+            className="border-t border-white/10 mt-16 pt-8"
+          >
+            <div className="flex flex-col md:flex-row justify-between items-center gap-4">
+              <div className="flex items-center gap-3">
+                <img
+                  src="https://raw.githubusercontent.com/ethereumknight2/agenxus-site/main/public/logo.png"
+                  alt="Agenxus Logo"
+                  className="h-8 w-auto"
+                />
+                <span className="text-gray-400 text-sm">
+                  © 2025 Agenxus. All rights reserved.
+                </span>
+              </div>
+
+              <div className="flex items-center gap-6">
+                <a
+                  href="/privacy"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Privacy Policy
+                </a>
+                <a
+                  href="/terms"
+                  className="text-gray-400 hover:text-white transition-colors text-sm"
+                >
+                  Terms of Service
+                </a>
+                <motion.a
+                  href="https://cal.com/agenxus/discoverycall-30min"
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  whileHover={{ scale: 1.05 }}
+                  className="bg-gradient-to-r from-blue-500 to-cyan-500 text-white text-sm font-semibold py-2 px-4 rounded-full"
+                >
+                  Book Call
+                </motion.a>
+              </div>
+            </div>
+          </motion.div>
+        </div>
+      </footer>
     </div>
   );
 }
@@ -1426,6 +1728,72 @@ function StatCard({ number, label, delay }: StatCardProps) {
         {number}
       </motion.div>
       <div className="text-gray-400 text-sm font-medium">{label}</div>
+    </motion.div>
+  );
+}
+
+interface FAQItemProps {
+  question: string;
+  answer: string;
+  delay: number;
+}
+
+function FAQItem({ question, answer, delay }: FAQItemProps) {
+  const [isOpen, setIsOpen] = useState(false);
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true });
+
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 30 }}
+      animate={
+        isInView
+          ? {
+              opacity: 1,
+              y: 0,
+              transition: {
+                duration: 0.6,
+                delay,
+                ease: "easeOut",
+              },
+            }
+          : {}
+      }
+      className="group"
+    >
+      <motion.div
+        className="bg-white/5 backdrop-blur-sm border border-white/10 rounded-2xl overflow-hidden hover:bg-white/10 transition-all duration-300"
+        whileHover={{ scale: 1.01 }}
+      >
+        <button
+          onClick={() => setIsOpen(!isOpen)}
+          className="w-full p-6 text-left flex items-center justify-between focus:outline-none focus:ring-2 focus:ring-blue-400/50 rounded-2xl"
+        >
+          <h3 className="text-lg font-semibold text-white pr-4">{question}</h3>
+          <motion.div
+            animate={{ rotate: isOpen ? 180 : 0 }}
+            transition={{ duration: 0.3 }}
+            className="flex-shrink-0"
+          >
+            <ChevronDown className="w-5 h-5 text-blue-400" />
+          </motion.div>
+        </button>
+
+        <motion.div
+          initial={false}
+          animate={{
+            height: isOpen ? "auto" : 0,
+            opacity: isOpen ? 1 : 0,
+          }}
+          transition={{ duration: 0.3, ease: "easeInOut" }}
+          className="overflow-hidden"
+        >
+          <div className="px-6 pb-6">
+            <p className="text-gray-300 leading-relaxed">{answer}</p>
+          </div>
+        </motion.div>
+      </motion.div>
     </motion.div>
   );
 }
