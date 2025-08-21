@@ -14,6 +14,7 @@ import {
   BookOpen,
   DollarSign,
   Settings,
+  Mail,
 } from "lucide-react";
 
 const CarDealershipAILanding = () => {
