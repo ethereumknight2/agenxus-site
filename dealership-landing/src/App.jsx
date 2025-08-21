@@ -89,18 +89,15 @@ const CarDealershipAILanding = () => {
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
             <div className="flex items-center space-x-3">
-              {/* Logo Placeholder - Replace with your actual logo */}
               <img
                 src={logoPath}
                 alt={`${brand} Logo`}
                 className="h-12 w-auto"
                 onError={(e) => {
-                  // Fallback to SVG if image doesn't exist
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextElementSibling.style.display = "block";
                 }}
               />
-              {/* SVG Fallback */}
               <div className="h-12 w-auto" style={{ display: "none" }}>
                 <svg
                   width="120"
@@ -121,12 +118,10 @@ const CarDealershipAILanding = () => {
                       <stop offset="100%" stopColor="#3B82F6" />
                     </linearGradient>
                   </defs>
-
                   <circle cx="20" cy="24" r="16" fill="url(#logoGradient)" />
                   <path d="M14 20h12v8H14z" fill="white" />
                   <circle cx="16" cy="22" r="1.5" fill="#8B5CF6" />
                   <circle cx="24" cy="26" r="1.5" fill="#8B5CF6" />
-
                   <text
                     x="44"
                     y="20"
@@ -273,7 +268,7 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* Features Section - MOVED TO SECOND POSITION */}
+      {/* Features Section */}
       <section className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
@@ -624,7 +619,7 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* FAQ Section - MOVED TO BOTTOM */}
+      {/* FAQ Section */}
       <section className="py-16 px-6 bg-black/30">
         <div className="container mx-auto max-w-4xl">
           <h2 className="text-3xl md:text-4xl font-bold mb-8 text-center">
@@ -706,7 +701,7 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* Contact Form Section - MOVED TO BOTTOM */}
+      {/* Contact Form Section */}
       <section className="py-16 px-6 bg-gradient-to-r from-blue-900/30 to-cyan-900/30">
         <div className="container mx-auto">
           <div className="max-w-2xl mx-auto text-center">
@@ -763,7 +758,7 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* CTA Section - SIMPLIFIED TO ONE BUTTON */}
+      {/* CTA Section */}
       <section className="py-20 px-6 bg-gradient-to-r from-purple-900/50 to-blue-900/50">
         <div className="container mx-auto text-center">
           <h2 className="text-4xl md:text-6xl font-bold mb-6">
@@ -818,15 +813,15 @@ const CarDealershipAILanding = () => {
       {showVideo && (
         <div className="fixed inset-0 z-50 bg-black/90 grid place-items-center p-4">
           <div className="w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
-            <video
-              className="w-full h-full object-cover"
-              controls
-              autoPlay
-              preload="metadata"
-            >
-              <source src="/public/videos/agenxus.mp4" type="video/mp4" />
-              Your browser does not support the video tag.
-            </video>
+            <iframe
+              className="w-full h-full"
+              src="https://player.vimeo.com/video/1112139956?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1"
+              frameBorder="0"
+              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
+              referrerPolicy="strict-origin-when-cross-origin"
+              allowFullScreen
+              title="Agenxus Demo Video"
+            ></iframe>
           </div>
           <button
             className="mt-4 text-gray-300 hover:text-white transition-colors flex items-center gap-2"
@@ -883,18 +878,15 @@ const CarDealershipAILanding = () => {
         <div className="container mx-auto">
           <div className="flex flex-col md:flex-row justify-between items-center">
             <div className="flex items-center space-x-3 mb-4 md:mb-0">
-              {/* Footer Logo - Replace with your actual logo */}
               <img
                 src={logoPath}
                 alt={`${brand} Logo`}
                 className="h-8 w-auto"
                 onError={(e) => {
-                  // Fallback to SVG if image doesn't exist
                   e.currentTarget.style.display = "none";
                   e.currentTarget.nextElementSibling.style.display = "block";
                 }}
               />
-              {/* SVG Fallback */}
               <div className="h-8 w-auto" style={{ display: "none" }}>
                 <svg
                   width="80"
@@ -915,7 +907,6 @@ const CarDealershipAILanding = () => {
                       <stop offset="100%" stopColor="#3B82F6" />
                     </linearGradient>
                   </defs>
-
                   <circle
                     cx="12"
                     cy="16"
@@ -925,7 +916,6 @@ const CarDealershipAILanding = () => {
                   <path d="M8 13h8v6H8z" fill="white" />
                   <circle cx="9.5" cy="14.5" r="1" fill="#8B5CF6" />
                   <circle cx="14.5" cy="17.5" r="1" fill="#8B5CF6" />
-
                   <text
                     x="28"
                     y="14"
