@@ -1,9 +1,7 @@
 import React, { useState, useEffect } from "react";
-import "./App.css";
 import {
   Phone,
   Calendar,
-  Play,
   CheckCircle,
   Clock,
   Users,
@@ -15,6 +13,10 @@ import {
   DollarSign,
   Settings,
   Mail,
+  Calculator,
+  BarChart3,
+  Target,
+  Zap,
 } from "lucide-react";
 
 const CarDealershipAILanding = () => {
@@ -30,8 +32,6 @@ const CarDealershipAILanding = () => {
     "Get a custom AI solution built for your dealership and budget • Pilot in 48 hours • 14-day risk-free • Cancel anytime";
   const specificityLine =
     "After-hours & overflow on day 1. Live inventory, payments, and service booking by day 2.";
-
-  const [showVideo, setShowVideo] = useState(false);
 
   useEffect(() => {
     window.gtag?.("event", "view_section", { id: "hero" });
@@ -51,6 +51,347 @@ const CarDealershipAILanding = () => {
         "This system improved our entire customer experience. Whether it's sales, service, or just general questions, every caller gets professional, knowledgeable assistance.",
     },
   ];
+
+  // ROI Calculator Component
+  const ROICalculator = () => {
+    const [inputs, setInputs] = useState({
+      monthlyServiceAppointments: 150,
+      averageServiceRevenue: 350,
+      currentNoShowRate: 25,
+      monthlyCarsOld: 25,
+      averageCarProfit: 3500,
+      missedCallsPerMonth: 40,
+    });
+
+    const [results, setResults] = useState({});
+
+    useEffect(() => {
+      calculateROI();
+    }, [inputs]);
+
+    const calculateROI = () => {
+      // Setup costs (one-time)
+      const setupCost = 3500; // Average of 2500-5000
+      const monthlyCost = 1125; // Average of 750-1500
+
+      // Service calculations
+      const noShowReduction = 0.6; // 60% reduction
+      const currentNoShows =
+        (inputs.monthlyServiceAppointments * inputs.currentNoShowRate) / 100;
+      const newNoShows = currentNoShows * (1 - noShowReduction);
+      const recoveredAppointments = currentNoShows - newNoShows;
+      const monthlyServiceBenefit =
+        recoveredAppointments * inputs.averageServiceRevenue;
+
+      // Sales calculations - conservative 30% conversion on missed calls
+      const convertedCalls = inputs.missedCallsPerMonth * 0.3;
+      const additionalCarsSold = convertedCalls * 0.4; // 40% of converted calls result in sales
+      const monthlySalesBenefit = additionalCarsSold * inputs.averageCarProfit;
+
+      // Total monthly benefit
+      const totalMonthlyBenefit = monthlyServiceBenefit + monthlySalesBenefit;
+      const netMonthlyBenefit = totalMonthlyBenefit - monthlyCost;
+
+      // Calculate ROI for different periods
+      const periods = [
+        { name: "30 Days", months: 1 },
+        { name: "90 Days", months: 3 },
+        { name: "6 Months", months: 6 },
+        { name: "1 Year", months: 12 },
+      ];
+
+      const roiResults = periods.map((period) => {
+        const totalBenefit = totalMonthlyBenefit * period.months;
+        const totalCost = setupCost + monthlyCost * period.months;
+        const netProfit = totalBenefit - totalCost;
+        const roiPercentage = (netProfit / totalCost) * 100;
+
+        return {
+          period: period.name,
+          totalBenefit: totalBenefit,
+          totalCost: totalCost,
+          netProfit: netProfit,
+          roiPercentage: roiPercentage,
+        };
+      });
+
+      setResults({
+        monthlyServiceBenefit,
+        monthlySalesBenefit,
+        totalMonthlyBenefit,
+        netMonthlyBenefit,
+        recoveredAppointments,
+        additionalCarsSold,
+        roiResults,
+      });
+    };
+
+    const formatCurrency = (amount) => {
+      return new Intl.NumberFormat("en-US", {
+        style: "currency",
+        currency: "USD",
+        minimumFractionDigits: 0,
+        maximumFractionDigits: 0,
+      }).format(amount);
+    };
+
+    const formatPercentage = (percentage) => {
+      return `${percentage >= 0 ? "+" : ""}${percentage.toFixed(0)}%`;
+    };
+
+    return (
+      <div className="bg-gradient-to-br from-purple-900/20 to-blue-900/20 backdrop-blur-sm rounded-2xl p-8 border border-purple-500/30">
+        <div className="text-center mb-8">
+          <div className="w-16 h-16 bg-gradient-to-r from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-4">
+            <Calculator className="w-8 h-8 text-white" />
+          </div>
+          <h3 className="text-3xl font-bold mb-2 text-white">ROI Calculator</h3>
+          <p className="text-gray-300">
+            See your potential return on investment
+          </p>
+        </div>
+
+        {/* Input Section */}
+        <div className="grid md:grid-cols-2 gap-6 mb-8">
+          <div className="space-y-4">
+            <h4 className="text-xl font-bold text-purple-300 mb-4 flex items-center">
+              <Settings className="w-5 h-5 mr-2" />
+              Service Department
+            </h4>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Monthly Service Appointments
+              </label>
+              <input
+                type="number"
+                value={inputs.monthlyServiceAppointments}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    monthlyServiceAppointments: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Average Service Revenue per Appointment
+              </label>
+              <input
+                type="number"
+                value={inputs.averageServiceRevenue}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    averageServiceRevenue: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Current No-Show Rate (%)
+              </label>
+              <input
+                type="number"
+                value={inputs.currentNoShowRate}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    currentNoShowRate: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+          </div>
+
+          <div className="space-y-4">
+            <h4 className="text-xl font-bold text-blue-300 mb-4 flex items-center">
+              <TrendingUp className="w-5 h-5 mr-2" />
+              Sales Department
+            </h4>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Cars Sold Per Month (Current)
+              </label>
+              <input
+                type="number"
+                value={inputs.monthlyCarsOld}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    monthlyCarsOld: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Average Profit Per Car
+              </label>
+              <input
+                type="number"
+                value={inputs.averageCarProfit}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    averageCarProfit: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+
+            <div>
+              <label className="block text-sm font-medium text-gray-300 mb-2">
+                Missed Calls Per Month
+              </label>
+              <input
+                type="number"
+                value={inputs.missedCallsPerMonth}
+                onChange={(e) =>
+                  setInputs({
+                    ...inputs,
+                    missedCallsPerMonth: parseInt(e.target.value) || 0,
+                  })
+                }
+                className="w-full px-4 py-3 rounded-lg bg-black/40 border border-white/20 text-white focus:border-purple-400 focus:ring-2 focus:ring-purple-400/20 outline-none"
+              />
+            </div>
+          </div>
+        </div>
+
+        {/* Results Section */}
+        {results.totalMonthlyBenefit && (
+          <div className="space-y-6">
+            {/* Monthly Benefits */}
+            <div className="grid md:grid-cols-3 gap-4">
+              <div className="bg-gradient-to-r from-purple-600/20 to-pink-600/20 rounded-xl p-6 border border-purple-400/30">
+                <div className="text-center">
+                  <Settings className="w-8 h-8 text-purple-400 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-white">
+                    {formatCurrency(results.monthlyServiceBenefit)}
+                  </div>
+                  <div className="text-sm text-purple-300">
+                    Monthly Service Boost
+                  </div>
+                  <div className="text-xs text-gray-400 mt-1">
+                    {Math.round(results.recoveredAppointments)} recovered
+                    appointments
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-blue-600/20 to-cyan-600/20 rounded-xl p-6 border border-blue-400/30">
+                <div className="text-center">
+                  <TrendingUp className="w-8 h-8 text-blue-400 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-white">
+                    {formatCurrency(results.monthlySalesBenefit)}
+                  </div>
+                  <div className="text-sm text-blue-300">
+                    Monthly Sales Boost
+                  </div>
+                  <div className="text-xs text-gray-400 mt-1">
+                    {Math.round(results.additionalCarsSold)} additional cars
+                    sold
+                  </div>
+                </div>
+              </div>
+
+              <div className="bg-gradient-to-r from-green-600/20 to-emerald-600/20 rounded-xl p-6 border border-green-400/30">
+                <div className="text-center">
+                  <Target className="w-8 h-8 text-green-400 mx-auto mb-2" />
+                  <div className="text-2xl font-bold text-white">
+                    {formatCurrency(results.netMonthlyBenefit)}
+                  </div>
+                  <div className="text-sm text-green-300">
+                    Net Monthly Profit
+                  </div>
+                  <div className="text-xs text-gray-400 mt-1">
+                    After all costs
+                  </div>
+                </div>
+              </div>
+            </div>
+
+            {/* ROI Timeline */}
+            <div className="bg-gradient-to-r from-indigo-900/30 to-purple-900/30 rounded-xl p-6 border border-indigo-400/30">
+              <h4 className="text-xl font-bold text-white mb-4 flex items-center justify-center">
+                <BarChart3 className="w-6 h-6 mr-2 text-indigo-400" />
+                Return on Investment Timeline
+              </h4>
+
+              <div className="grid md:grid-cols-4 gap-4">
+                {results.roiResults.map((result, index) => (
+                  <div
+                    key={index}
+                    className="bg-black/20 rounded-lg p-4 text-center border border-white/10"
+                  >
+                    <div className="text-lg font-bold text-white mb-1">
+                      {result.period}
+                    </div>
+                    <div
+                      className={`text-2xl font-bold mb-2 ${
+                        result.roiPercentage >= 0
+                          ? "text-green-400"
+                          : "text-red-400"
+                      }`}
+                    >
+                      {formatPercentage(result.roiPercentage)}
+                    </div>
+                    <div className="text-sm text-gray-300 mb-1">
+                      Revenue: {formatCurrency(result.totalBenefit)}
+                    </div>
+                    <div className="text-sm text-gray-400 mb-1">
+                      Investment: {formatCurrency(result.totalCost)}
+                    </div>
+                    <div
+                      className={`text-sm font-medium ${
+                        result.netProfit >= 0
+                          ? "text-green-300"
+                          : "text-red-300"
+                      }`}
+                    >
+                      Net: {formatCurrency(result.netProfit)}
+                    </div>
+                  </div>
+                ))}
+              </div>
+            </div>
+
+            {/* Assumptions */}
+            <div className="bg-yellow-900/20 rounded-xl p-6 border border-yellow-500/30">
+              <h5 className="font-bold text-yellow-300 mb-2 flex items-center">
+                <Zap className="w-5 h-5 mr-2" />
+                Calculator Assumptions
+              </h5>
+              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
+                <ul className="space-y-1">
+                  <li>• 60% reduction in no-shows with SMS reminders</li>
+                  <li>• 30% of missed calls become engaged prospects</li>
+                  <li>• 40% of engaged prospects result in sales</li>
+                </ul>
+                <ul className="space-y-1">
+                  <li>• Setup cost: $2,500 - $5,000 (avg. $3,500)</li>
+                  <li>• Monthly cost: $750 - $1,500 (avg. $1,125)</li>
+                  <li>• Results may vary by dealership</li>
+                </ul>
+              </div>
+            </div>
+          </div>
+        )}
+      </div>
+    );
+  };
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-gray-900 via-blue-950 to-black text-white overflow-hidden">
@@ -171,7 +512,8 @@ const CarDealershipAILanding = () => {
               </span>
             </h1>
             <h2 className="text-2xl md:text-3xl font-semibold text-gray-200 mb-4">
-              Turn Missed Calls Into Closed Deals with Your 24/7 AI Receptionist
+              Turn Missed Calls Into Closed Deals with Your End-to-End AI
+              Dealership Solution.
             </h2>
             <p className="text-lg text-purple-300 mb-4 font-medium">
               Missed calls ≠ missed revenue. Capture after-hours Sales & Service
@@ -214,7 +556,7 @@ const CarDealershipAILanding = () => {
                 Call the AI Receptionist
               </h3>
               <p className="text-gray-300 mb-4">
-                Sales or Service? The AI routes you.
+                Sales or Service? The agent routes you.
               </p>
               <a
                 href={`tel:${phoneNumber}`}
@@ -253,11 +595,15 @@ const CarDealershipAILanding = () => {
               </a>
 
               <button
-                onClick={() => setShowVideo(true)}
+                onClick={() =>
+                  document
+                    .getElementById("roi-calculator")
+                    .scrollIntoView({ behavior: "smooth" })
+                }
                 className="group bg-transparent border-2 border-purple-500 hover:bg-purple-500/20 text-purple-400 hover:text-white font-bold py-4 px-8 rounded-full text-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center space-x-2"
               >
-                <Play className="w-5 h-5" />
-                <span>Watch Video</span>
+                <Calculator className="w-5 h-5" />
+                <span>See Your Dealership's AI Revenue Boost</span>
               </button>
             </div>
 
@@ -303,7 +649,7 @@ const CarDealershipAILanding = () => {
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Routes calls to sales, service, or parts</span>
+                  <span>Routes calls to sales, service, or any department</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
@@ -327,12 +673,12 @@ const CarDealershipAILanding = () => {
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
                   <span>
-                    Searches <strong>live new & used inventory</strong>
+                    Searches <strong>new & used inventory in real-time</strong>
                   </span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Discusses features, incentives, & trade-in values</span>
+                  <span>Discusses features, incentives, & trade-ins</span>
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
@@ -371,15 +717,18 @@ const CarDealershipAILanding = () => {
                 </li>
                 <li className="flex items-start space-x-3">
                   <CheckCircle className="w-5 h-5 text-green-400 flex-shrink-0 mt-0.5" />
-                  <span>Provides maintenance recommendations</span>
+                  <span>
+                    Confirms service history and provides maintenance
+                    recommendations
+                  </span>
                 </li>
               </ul>
             </div>
           </div>
 
           <p className="text-sm text-gray-400 text-center mt-8">
-            Works with: vAuto • CDK • Dealertrack • Cal.com/Calendly • Twilio
-            SMS
+            Works with: vAuto • CDK • Dealertrack • xTime • Cal.com/Calendly •
+            Twilio • Other leading solutions
           </p>
           <p className="text-sm text-gray-400 text-center mt-6">
             Admin controls include: routing & hours, banned phrases, escalation
@@ -419,116 +768,50 @@ const CarDealershipAILanding = () => {
         </div>
       </section>
 
-      {/* Demo Experience Section */}
-      <section className="py-20 px-6">
+      {/* ROI Calculator Section */}
+      <section id="roi-calculator" className="py-20 px-6">
         <div className="container mx-auto">
           <div className="text-center mb-16">
             <h2 className="text-4xl md:text-5xl font-bold mb-6">
-              See It for Yourself
+              Calculate Your ROI
             </h2>
+            <p className="text-xl text-gray-300 max-w-3xl mx-auto">
+              See exactly how much revenue you could recover with our AI
+              solution. Adjust the inputs to match your dealership's current
+              performance.
+            </p>
           </div>
 
-          <div className="grid md:grid-cols-2 gap-12 items-center max-w-6xl mx-auto">
-            <div className="space-y-8">
-              <div className="bg-gradient-to-r from-purple-600/20 to-blue-600/20 backdrop-blur-sm rounded-xl p-8 border border-purple-500/30">
-                <h3 className="text-2xl font-bold mb-6 text-white">
-                  3-Step Experience
-                </h3>
-                <div className="space-y-4">
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-purple-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                      1
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Call the AI</h4>
-                      <p className="text-gray-300">
-                        Dial{" "}
-                        <a
-                          href={`tel:${phoneNumber}`}
-                          className="underline decoration-dotted"
-                        >
-                          {phoneDisplay}
-                        </a>
-                      </p>
-                      <p className="text-xs text-gray-500 mt-1">
-                        Demo line records for quality. Do not share sensitive
-                        info.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-blue-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                      2
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Ask Anything</h4>
-                      <p className="text-gray-300">
-                        Book service, check inventory, request payments
-                      </p>
-                      <p className="text-xs text-gray-400 mt-1">
-                        Ask for a payment on a specific VIN, or reschedule a
-                        service appointment—just like a customer would.
-                      </p>
-                    </div>
-                  </div>
-                  <div className="flex items-start space-x-4">
-                    <div className="w-8 h-8 bg-cyan-500 rounded-full flex items-center justify-center text-white font-bold flex-shrink-0">
-                      3
-                    </div>
-                    <div>
-                      <h4 className="font-bold text-white">Experience</h4>
-                      <p className="text-gray-300">
-                        How it feels for your customers
-                      </p>
-                    </div>
-                  </div>
-                </div>
-              </div>
+          <div className="max-w-6xl mx-auto">
+            <ROICalculator />
+          </div>
 
-              <div className="flex flex-col sm:flex-row gap-4">
-                <a
-                  href={`tel:${phoneNumber}`}
-                  className="flex-1 bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
-                  onClick={() =>
-                    window.gtag?.("event", "click_call_ai", {
-                      location: "demo_section",
-                    })
-                  }
-                >
-                  <PhoneCall className="w-5 h-5" />
-                  <span>{phoneDisplay}</span>
-                </a>
-                <a
-                  href={`${bookUrl}?utm_source=lp&utm_medium=cta&utm_campaign=demo`}
-                  className="flex-1 bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-6 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
-                  onClick={() =>
-                    window.gtag?.("event", "click_book_demo", {
-                      location: "demo_section",
-                    })
-                  }
-                >
-                  <Calendar className="w-5 h-5" />
-                  <span>Get Started</span>
-                </a>
-              </div>
-            </div>
-
-            <div className="relative">
-              <div className="bg-gradient-to-r from-purple-500/20 to-blue-500/20 backdrop-blur-sm rounded-xl p-8 border border-white/20">
-                <div className="aspect-video bg-black/40 rounded-lg flex items-center justify-center relative overflow-hidden">
-                  <div className="absolute inset-0 bg-gradient-to-br from-purple-500/20 to-blue-500/20"></div>
-                  <button
-                    onClick={() => setShowVideo(true)}
-                    className="relative z-10 w-20 h-20 bg-white/20 backdrop-blur-sm rounded-full flex items-center justify-center hover:bg-white/30 transition-all duration-300 transform hover:scale-110"
-                  >
-                    <Play className="w-8 h-8 text-white ml-1" />
-                  </button>
-                </div>
-                <div className="mt-4 text-center">
-                  <h4 className="text-lg font-semibold mb-2">Watch Video</h4>
-                  <p className="text-gray-400">See all the features</p>
-                </div>
-              </div>
+          <div className="text-center mt-12">
+            <div className="flex flex-col sm:flex-row gap-4 justify-center">
+              <a
+                href={`tel:${phoneNumber}`}
+                className="bg-gradient-to-r from-blue-500 to-cyan-500 hover:from-blue-600 hover:to-cyan-600 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                onClick={() =>
+                  window.gtag?.("event", "click_call_ai", {
+                    location: "roi_section",
+                  })
+                }
+              >
+                <PhoneCall className="w-5 h-5" />
+                <span>Call AI Demo: {phoneDisplay}</span>
+              </a>
+              <a
+                href={`${bookUrl}?utm_source=lp&utm_medium=cta&utm_campaign=roi`}
+                className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-bold py-4 px-8 rounded-lg transition-all duration-300 transform hover:scale-105 inline-flex items-center justify-center space-x-2"
+                onClick={() =>
+                  window.gtag?.("event", "click_book_demo", {
+                    location: "roi_section",
+                  })
+                }
+              >
+                <Calendar className="w-5 h-5" />
+                <span>Schedule Discovery Call</span>
+              </a>
             </div>
           </div>
         </div>
@@ -542,7 +825,7 @@ const CarDealershipAILanding = () => {
               Feedback from Early Adopters
             </h2>
             <p className="text-xl text-gray-300">
-              Representative feedback from dealerships testing our AI system
+              Representative feedback from dealerships testing our AI solution
             </p>
           </div>
 
@@ -569,7 +852,7 @@ const CarDealershipAILanding = () => {
           </div>
 
           <p className="text-xs text-gray-500 text-center mt-8">
-            Testimonials are representative of pilot feedback.
+            Testimonials are from both users and pilot users.
           </p>
         </div>
       </section>
@@ -662,9 +945,9 @@ const CarDealershipAILanding = () => {
                 How do handoffs to humans work?
               </h3>
               <p className="text-gray-300">
-                The AI can warm-transfer to extensions or cell phones, create
-                call-back tasks, and send transcripts to your CRM. You decide
-                when to escalate—by intent, sentiment, or wait time.
+                The AI agent can warm-transfer to extensions or cell phones,
+                create call-back tasks, and send transcripts to your CRM. You
+                decide when to escalate—by intent, sentiment, or wait time.
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -685,7 +968,7 @@ const CarDealershipAILanding = () => {
               <p className="text-gray-300">
                 Choose a fully managed subscription, a one-time setup with a
                 light service plan, or an enterprise rollout across multiple
-                rooftops. We scope to your budget and systems.
+                dealership locations. We scope to your budget and systems.
               </p>
             </div>
             <div className="bg-white/5 backdrop-blur-sm rounded-xl p-6 border border-white/10">
@@ -766,8 +1049,10 @@ const CarDealershipAILanding = () => {
           </h2>
           <p className="text-xl md:text-2xl text-gray-300 mb-12 max-w-4xl mx-auto">
             Book your{" "}
-            <span className="text-purple-400 font-semibold">free demo</span> now
-            and see how much business you've been leaving on the table.
+            <span className="text-purple-400 font-semibold">
+              free discovery call
+            </span>{" "}
+            now and see how much business you've been leaving on the table.
           </p>
 
           <div className="flex justify-center">
@@ -794,56 +1079,20 @@ const CarDealershipAILanding = () => {
             <div className="flex justify-center items-center space-x-8 text-sm text-gray-500">
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4" />
-                <span>Works with vAuto, CDK, Dealertrack</span>
+                <span>Works with vAuto, CDK, Dealertrack, xTime</span>
               </div>
               <div className="flex items-center space-x-2">
                 <CheckCircle className="w-4 h-4" />
-                <span>Twilio, Cal.com/Calendly</span>
+                <span>Twilio, Cal.com/Calendly, and more...</span>
               </div>
               <div className="flex items-center space-x-2">
                 <Users className="w-4 h-4" />
-                <span>Trusted by Leading Dealerships</span>
+                <span>Expert-Driven. Dealership-Focused.</span>
               </div>
             </div>
           </div>
         </div>
       </section>
-
-      {/* Video Modal */}
-      {showVideo && (
-        <div className="fixed inset-0 z-50 bg-black/90 grid place-items-center p-4">
-          <div className="w-full max-w-4xl aspect-video bg-black rounded-xl overflow-hidden">
-            <iframe
-              className="w-full h-full"
-              src="https://player.vimeo.com/video/1112139956?badge=0&autopause=0&player_id=0&app_id=58479&autoplay=1"
-              frameBorder="0"
-              allow="autoplay; fullscreen; picture-in-picture; clipboard-write; encrypted-media; web-share"
-              referrerPolicy="strict-origin-when-cross-origin"
-              allowFullScreen
-              title="Agenxus Demo Video"
-            ></iframe>
-          </div>
-          <button
-            className="mt-4 text-gray-300 hover:text-white transition-colors flex items-center gap-2"
-            onClick={() => setShowVideo(false)}
-          >
-            <svg
-              className="w-5 h-5"
-              fill="none"
-              stroke="currentColor"
-              viewBox="0 0 24 24"
-            >
-              <path
-                strokeLinecap="round"
-                strokeLinejoin="round"
-                strokeWidth={2}
-                d="M6 18L18 6M6 6l12 12"
-              />
-            </svg>
-            Close Video
-          </button>
-        </div>
-      )}
 
       {/* Sticky mobile call bar */}
       <div className="md:hidden fixed bottom-0 inset-x-0 z-50 bg-black/90 backdrop-blur border-t border-white/10">
@@ -857,7 +1106,7 @@ const CarDealershipAILanding = () => {
               })
             }
           >
-            <PhoneCall className="w-5 h-5 mr-2" /> Call the AI
+            <PhoneCall className="w-5 h-5 mr-2" /> Call the AI Agent
           </a>
           <a
             href={`${bookUrl}?utm_source=lp&utm_medium=sticky&utm_campaign=mobile`}
@@ -954,13 +1203,6 @@ const CarDealershipAILanding = () => {
                 rel="noopener noreferrer"
               >
                 Terms of Service
-              </a>
-              <a
-                href="/support"
-                className="hover:text-white transition-colors"
-                rel="noopener noreferrer"
-              >
-                Support
               </a>
             </div>
           </div>
