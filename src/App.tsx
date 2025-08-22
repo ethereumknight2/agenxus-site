@@ -1235,15 +1235,15 @@ export default function App() {
                 <ContactItem
                   icon={<Mail className="w-6 h-6" />}
                   title="Email"
-                  content="hello@agenxus.com"
-                  link="mailto:hello@agenxus.com"
+                  content="info@agenxus.com"
+                  link="mailto:info@agenxus.com"
                 />
 
                 <ContactItem
                   icon={<Phone className="w-6 h-6" />}
                   title="Phone"
-                  content="+1 (555) 123-4567"
-                  link="tel:+15551234567"
+                  content="+1 (872) 277-8841"
+                  link="tel:+18722778841"
                 />
 
                 <ContactItem
@@ -1251,9 +1251,9 @@ export default function App() {
                   title="Office"
                   content={
                     <>
-                      123 Innovation Drive
+                      218 S. Main Street
                       <br />
-                      San Francisco, CA 94105
+                      Naperville, IL
                       <br />
                       United States
                     </>
@@ -1265,9 +1265,9 @@ export default function App() {
                   title="Business Hours"
                   content={
                     <>
-                      Monday - Friday: 9:00 AM - 6:00 PM PST
+                      Monday - Friday: 9:00 AM - 5:00 PM CST
                       <br />
-                      Saturday: 10:00 AM - 4:00 PM PST
+                      Saturday: Closed
                       <br />
                       Sunday: Closed
                     </>

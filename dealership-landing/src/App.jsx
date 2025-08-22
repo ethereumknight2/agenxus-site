@@ -367,26 +367,6 @@ const CarDealershipAILanding = () => {
                 ))}
               </div>
             </div>
-
-            {/* Assumptions */}
-            <div className="bg-yellow-900/20 rounded-xl p-6 border border-yellow-500/30">
-              <h5 className="font-bold text-yellow-300 mb-2 flex items-center">
-                <Zap className="w-5 h-5 mr-2" />
-                Calculator Assumptions
-              </h5>
-              <div className="grid md:grid-cols-2 gap-4 text-sm text-gray-300">
-                <ul className="space-y-1">
-                  <li>• 60% reduction in no-shows with SMS reminders</li>
-                  <li>• 30% of missed calls become engaged prospects</li>
-                  <li>• 40% of engaged prospects result in sales</li>
-                </ul>
-                <ul className="space-y-1">
-                  <li>• Setup cost: $2,500 - $5,000 (avg. $3,500)</li>
-                  <li>• Monthly cost: $750 - $1,500 (avg. $1,125)</li>
-                  <li>• Results may vary by dealership</li>
-                </ul>
-              </div>
-            </div>
           </div>
         )}
       </div>
@@ -429,7 +409,10 @@ const CarDealershipAILanding = () => {
       <header className="relative z-50 backdrop-blur-sm bg-black/20 border-b border-white/10">
         <div className="container mx-auto px-6 py-4">
           <div className="flex items-center justify-between">
-            <div className="flex items-center space-x-3">
+            <a
+              href="https://agenxus.com"
+              className="flex items-center space-x-3 hover:opacity-80 transition-opacity"
+            >
               <img
                 src={logoPath}
                 alt={`${brand} Logo`}
@@ -485,7 +468,7 @@ const CarDealershipAILanding = () => {
                   </text>
                 </svg>
               </div>
-            </div>
+            </a>
             <a
               href={`${bookUrl}?utm_source=lp&utm_medium=nav&utm_campaign=header`}
               className="bg-gradient-to-r from-purple-600 to-blue-600 hover:from-purple-700 hover:to-blue-700 text-white font-semibold py-2 px-6 rounded-full transition-all duration-300 transform hover:scale-105"
